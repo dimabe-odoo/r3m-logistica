@@ -1,0 +1,13 @@
+pyjwt
+simplejson
+pydifact
+xmltodict
+pdf417
+pdfkit
+py_linq
+pytz
+pandas
+pydifact == 0.0.5
+PyJWT
+XlsxWriter
+cryptography
