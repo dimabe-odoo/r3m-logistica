@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="report_vacation">
+            <t t-call="web.html_container">
+                <t t-set="l" t-value="0"/>
+                <t t-set="copies" t-value="2"/>
+                <t t-foreach="range(copies)" t-as="q">
+                    <div class="page">
+                        <t t-foreach="docs" t-as="d">
+                            <t t-set="l" t-value="l +1"/>
+                            <div style="width: 100%;">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td style="width:50%;">
+                                            <div style="height:100px; text-align: left; padding: 10px;">
+                                                <img t-att-src="'data:image/png;base64,%s' % to_text(res_company.logo)"
+                                                     style="max-width: 200px; max-height: 120px;"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br/>
+                            <div style="border: 2px solid; width: 100%; height: 80%;">
+                                <div style="padding: 8px;">
+                                    <div style="text-align: center">
+                                        <h3>COMPROBANTE DE FERIADO LEGAL</h3>
+                                    </div>
+                                    <hr/>
+                                    <div style="width: 100%; text-align: right">
+                                        <span>
+                                            <t t-if="l == copies">
+                                                <strong>Copia</strong>
+                                            </t>
+                                            <t t-else="">
+                                                <strong>Original</strong>
+                                            </t>
+                                        </span>
+                                        <br/>
+                                        <div style="width: 75%;">
+                                            <table width="100%; float: right;">
+                                                <tr>
+                                                    <t t-if="d.employee_id.gender == 'male'">
+                                                        <td style="width: 10%">DEL SR.</td>
+                                                    </t>
+                                                    <t t-if="d.employee_id.gender == 'female'">
+                                                        <td style="width: 10%">DEL SRA.</td>
+                                                    </t>
+                                                    <t t-if="d.employee_id.gender == 'other'">
+                                                        <td style="width: 10%">DEL SR(A).</td>
+                                                    </t>
+                                                    <td style="width: 80%">
+                                                        <span style="font-weight: bold;" t-field="d.employee_id"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <br/>
+                                        <div style="width: 100%; margin: 0 auto;">
+                                            <table style="width: 50%; margin: 0 auto">
+                                                <tr>
+                                                    <td colspan="4" style="text-align: center;">CORRESPONDIENTE AL
+                                                        PERIODO CONTRACTUAL
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 10%">DEL</td>
+                                                    <td style="width: 40%">
+                                                        <span style="font-weight: bold;"
+                                                              t-esc="d.get_date_str(d.period_start)"/>
+                                                    </td>
+                                                    <td style="width: 10%">AL</td>
+                                                    <td style="width: 40%">
+                                                        <span style="font-weight: bold;"
+                                                              t-esc="d.get_date_str(d.period_finish)"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <br/>
+                                        <div>
+                                            <p style="text-align: justify;">En cumplimiento a las disposiciones legales
+                                                vigentes se deja constancia que a contar de las fechas que se indican.
+                                                <br/>
+                                                El trabajador
+                                                <span style="font-weight: bold; margin-left: 4px;"
+                                                      t-field="d.employee_id"/>
+                                                <br/>
+                                                Hará uso de
+                                                <span style="font-weight: bold; margin-left:4px;"
+                                                      t-esc="int(d.number_of_days)"/>
+                                                dias habiles de su feriado anual con remuneración
+                                                íntegra de acuerdo al siguiente detalle<br/>DESCANSO EFECTIVO ENTRE LAS
+                                                FECHAS QUE SE INDICAN:
+                                            </p>
+                                            <p style="text-align: left;">Desde
+                                                <span style="font-weight: bold; margin-left: 4px;"
+                                                      t-esc="d.get_date_str(d.request_date_from)"/>
+                                                AL
+                                                <span style="font-weight: bold;"
+                                                      t-esc="d.get_date_str(d.request_date_to)"/>
+                                            </p>
+                                        </div>
+                                        <br/>
+                                        <div style="width: 100%">
+                                            <table width="40%">
+                                                <tr>
+                                                    <th>
+                                                        Fecha Aprobación:
+                                                        <span style="margin-left:4px;" t-field="d.approve_date"/>
+                                                    </th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <br/>
+                                        <div style="width: 100%;">
+                                            <div style="width: 50%; margin: 0 auto;">
+                                                <table width="100%;" style="border: 1px solid" cellspacing="0">
+                                                    <tr>
+                                                        <th colspan="2" style="border-bottom: 1px solid">DETALLE DEL
+                                                            FERIADO
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="text-align: left; width: 80%">DIAS HABILES</th>
+                                                        <td style="text-align: left; border-left: 1px solid;  width: 20%; text-align: center;">
+                                                            <strong>
+                                                                <span t-esc="int(d.number_of_days)"/>
+                                                            </strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="text-align: left;">VAC. PROGRESIVAS</th>
+                                                        <td style="text-align: left; border-left: 1px solid;  text-align: center;">
+                                                            <strong>
+                                                                <span t-esc="int(d.get_vacation_progressive_to_report())"/>
+                                                            </strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="text-align: left;">DOMINGOS E INHABILES</th>
+                                                        <td style="text-align: left; border-left: 1px solid;  text-align: center;">
+                                                            <strong>
+                                                                <span t-esc="int(d.get_not_valid_days())"/>
+                                                            </strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="text-align: left;">SALDO PENDIENTE</th>
+                                                        <td style="text-align: left; border-left: 1px solid;  text-align: center;">
+                                                            <strong>
+                                                                <span t-esc="int(d.vacation_days_remaining)"/>
+                                                            </strong>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div style="width: 100%; margin-top: 200px;">
+                                            <div style="width: 100%; ">
+                                                <table width="100%">
+                                                    <tr>
+                                                        <td style="width: 40%">
+                                                            <hr style="border: 1px solid;"/>
+                                                        </td>
+                                                        <td style="width: 20%"></td>
+                                                        <td style="width: 40%">
+                                                            <hr style="border: 1px solid;"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">FIRMA EMPLEADOR</td>
+                                                        <td></td>
+                                                        <td style="text-align: center;">FIRMA TRABAJADOR</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">
+                                                            <span style="font-weight: bold;"
+                                                                  t-field="res_company.name"/>
+                                                        </td>
+                                                        <td></td>
+                                                        <td style="text-align: center;">
+                                                            <span style="font-weight: bold;" t-field="d.employee_id"/>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                    <t t-if="l == copies">
+                        <div style="page-break-after:avoid;"></div>
+                    </t>
+                    <t t-else="">
+                        <div style="page-break-after:always;"></div>
+                    </t>
+                </t>
+            </t>
+        </template>
+        <record id="report_vacation_action" model="ir.actions.report">
+            <field name="name">Comprobante de Vacaciones</field>
+            <field name="model">hr.leave</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">dimabe_rrhh.report_vacation</field>
+            <field name="report_file">report_vacation_template</field>
+            <field name="binding_model_id" ref="hr_holidays.model_hr_leave"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="dimabe_rrhh.paper_format_letter_custom"/>
+        </record>
+    </data>
+</odoo>

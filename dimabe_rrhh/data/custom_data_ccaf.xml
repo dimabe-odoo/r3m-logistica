@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="custom_data_ccaf_00" model="custom.data">
+            <field name="name">Sin CCAF</field>
+            <field name="code">00</field>
+            <field name="data_type_id" ref="custom_data_initial_ccaf"/>
+        </record>
+        <record id="custom_data_ccaf_01" model="custom.data">
+            <field name="name">Los Andes</field>
+            <field name="code">01</field>
+            <field name="vat">81826800-9</field>
+            <field name="data_type_id" ref="custom_data_initial_ccaf"/>
+        </record>
+        <record id="custom_data_ccaf_02" model="custom.data">
+            <field name="name">La Araucana</field>
+            <field name="code">02</field>
+            <field name="vat">70016160-9</field>
+            <field name="data_type_id" ref="custom_data_initial_ccaf"/>
+        </record>
+        <record id="custom_data_ccaf_03" model="custom.data">
+            <field name="name">Los Héroes</field>
+            <field name="code">03</field>
+            <field name="vat">70016330-k</field>
+            <field name="data_type_id" ref="custom_data_initial_ccaf"/>
+        </record>
+        <record id="custom_data_ccaf_06" model="custom.data">
+            <field name="name">18 de Septiembre</field>
+            <field name="code">06</field>
+            <field name="vat">82606800-0</field>
+            <field name="data_type_id" ref="custom_data_initial_ccaf"/>
+        </record>
+</odoo>

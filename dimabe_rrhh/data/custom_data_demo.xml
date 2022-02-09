@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <record model="custom.data.type" id="custom_data_initial_apv">
+            <field name="name">APV</field>
+        </record>
+        <record model="custom.data.type" id="custom_data_initial_ccaf">
+            <field name="name">CCAF</field>
+        </record>
+        <record model="custom.data.type" id="custom_data_initial_mutuality">
+            <field name="name">Mutualidad</field>
+        </record>
+        <record model="custom.data.type" id="custom_data_initial_complementary">
+            <field name="name">Seguro Complementario</field>
+        </record>
+        <record model="custom.data.type" id="custom_data_initial_indicators">
+            <field name="name">Indicadores</field>
+        </record>
+        <record model="custom.data.type" id="custom_data_initial_section">
+            <field name="name">Tramo</field>
+        </record>
+        <record model="custom.data.type" id="custom_data_contract_type">
+            <field name="name">Tipo de Contrato</field>
+        </record>
+        
+</odoo>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="custom_confirm_payslip_view" model="ir.ui.view">
+        <field name="name">Confirmar Nóminas por Indicador</field>
+        <field name="model">custom.confirm_payslip</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="company_id" string="Compañia" required="1" />
+                        <field name="indicator_id"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="confirm_payslips" string="Confirmar Nóminas" type="object" class="oe_highlight"/>
+                    <button name="confirm_payslips" string="Confirmar Nóminas - Envío de E-mail" type="object" class="oe_highlight" context="{'payslip_generate_pdf': True}"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="custom_undo_payslip_view" model="ir.ui.view">
+        <field name="name">Deshacer Nóminas Confirmadas por Indicador</field>
+        <field name="model">custom.undo_payslip</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="company_id" string="Compañia" required="1" />
+                        <field name="indicator_id"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="undo_payslips" string="Deshacer Nóminas Confirmadas" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_confirm_payslip_menu" model="ir.actions.act_window">
+        <field name="name">Confirmar Nóminas por Indicador</field>
+        <field name="res_model">custom.confirm_payslip</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="custom_confirm_payslip_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_undo_payslip_menu" model="ir.actions.act_window">
+        <field name="name">Deshacer Nóminas Confirmar por Indicador</field>
+        <field name="res_model">custom.undo_payslip</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="custom_undo_payslip_view"/>
+        <field name="target">new</field>
+    </record>
+
+
+    <menuitem name="Confirmar Nóminas por Indicador" parent="hr_payroll.menu_hr_payroll_payslips"
+              action="action_confirm_payslip_menu" id="confirm_payslip_item" sequence="100"/>
+
+    <menuitem name="Deshacer Nóminas Confirmadas por Indicador" parent="hr_payroll.menu_hr_payroll_payslips"
+              action="action_undo_payslip_menu" id="undo_payslip_item" sequence="101"/>
+
+
+</odoo>

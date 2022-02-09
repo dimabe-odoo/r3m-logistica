@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="custom_data_undefined" model="custom.data">
+            <field name="name">Plazo Indefinido</field>
+            <field name="code">1</field>
+            <field name="data_type_id" ref="custom_data_contract_type"/>
+        </record>
+        <record id="custom_data_fixed" model="custom.data">
+            <field name="name">Plazo Fijo</field>
+            <field name="code">2</field>
+            <field name="data_type_id" ref="custom_data_contract_type"/>
+        </record>
+        <record id="custom_data_more_eleven" model="custom.data">
+            <field name="name">Indefinido 11 años o más</field>
+            <field name="code">3</field>
+            <field name="data_type_id" ref="custom_data_contract_type"/>
+        </record>
+        <record id="custom_data_enterprise_wage" model="custom.data">
+            <field name="name">Sueldo Empresarial</field>
+            <field name="code">4</field>
+            <field name="data_type_id" ref="custom_data_contract_type"/>
+        </record>
+</odoo>

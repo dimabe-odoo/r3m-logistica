@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <record model="custom.fired" id="custom_fire_159_1">
+            <field name="name">Acuerdo entre las partes de ponerle término.</field>
+            <field name="description">Acuerdo entre las partes de ponerle término.</field>
+            <field name="article">159</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_159_2">
+            <field name="name">Renuncia del trabajador. </field>
+            <field name="description">Renuncia del trabajador. </field>
+            <field name="article">159</field>
+            <field name="sequence">2</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_159_3">
+            <field name="name">Muerte del trabajador.</field>
+            <field name="description">Muerte del trabajador.</field>
+            <field name="article">159</field>
+            <field name="sequence">3</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_159_4">
+            <field name="name">Vencimiento del plazo del contrato.</field>
+            <field name="description">Vencimiento del plazo del contrato.</field>
+            <field name="article">159</field>
+            <field name="sequence">4</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_159_5">
+            <field name="name">Término del trabajo acordado.</field>
+            <field name="description">Término del trabajo acordado.</field>
+            <field name="article">159</field>
+            <field name="sequence">5</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_159_6">
+            <field name="name">Caso fortuito o fuerza mayor.</field>
+            <field name="description">Caso fortuito o fuerza mayor.</field>
+            <field name="article">159</field>
+            <field name="sequence">6</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_160_1">
+            <field name="name">Conductas indebidas y graves del trabajador.</field>
+            <field name="description">Tales como falta de probidad, acoso sexual, maltrato físico contra el empleador u otro trabajador, Injurias contra el empleador, conducta inmoral que afecte la empresa y acoso laboral.</field>
+            <field name="article">160</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_160_2">
+            <field name="name">Realizar actividades prohibidas en el contrato de trabajo.</field>
+            <field name="description">Realizar actividades prohibidas en el contrato de trabajo.</field>
+            <field name="article">160</field>
+            <field name="sequence">2</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_160_3">
+            <field name="name">No presentarse el trabajador a sus labores sin causa justificada dos días seguidos.</field>
+            <field name="description">No presentarse el trabajador a sus labores sin causa justificada dos días seguidos, dos lunes en el mes o un total de tres días en el mes; asimismo, la falta injustificada, o sin aviso previo de parte del trabajador que está a cargo de una actividad, faena o máquina cuyo abandono o paralización signifique una perturbación grave en la marcha de la obra.</field>
+            <field name="article">160</field>
+            <field name="sequence">3</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_160_4">
+            <field name="name">Abandono del trabajo.</field>
+            <field name="description">Abandono del trabajo, entendiéndose por tal: a) la salida injustificada del trabajador del sitio de la faena y durante las horas de trabajo, sin permiso del empleador o de quien lo represente, y b) la negativa a trabajar sin causa justificada en las faenas convenidas en el contrato.</field>
+            <field name="article">160</field>
+            <field name="sequence">4</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_160_5">
+            <field name="name">Actos, omisiones o imprudencias temerarias que afecten a la seguridad o al funcionamiento del establecimiento.</field>
+            <field name="description">Actos, omisiones o imprudencias temerarias que afecten a la seguridad o al funcionamiento del establecimiento, a la seguridad o a la actividad de los trabajadores, o a la salud de éstos. </field>
+            <field name="article">160</field>
+            <field name="sequence">5</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_160_6">
+            <field name="name">El perjuicio material causado intencionalmente en las instalaciones.</field>
+            <field name="description">El perjuicio material causado intencionalmente en las instalaciones, maquinarias, herramientas, útiles de trabajo, productos o mercaderías.</field>
+            <field name="article">160</field>
+            <field name="sequence">6</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_160_7">
+            <field name="name">Incumplimiento grave de las obligaciones que impone el contrato.</field>
+            <field name="description">Incumplimiento grave de las obligaciones que impone el contrato.</field>
+            <field name="article">160</field>
+            <field name="sequence">7</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_161_1">
+            <field name="name">Necesidades de la empresa, establecimiento o servicio.</field>
+            <field name="description">Necesidades de la empresa, establecimiento o servicio.</field>
+            <field name="article">161</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_161_2">
+            <field name="name">Desahucio escrito del empleador.</field>
+            <field name="description">Desahucio escrito del empleador.</field>
+            <field name="article">161</field>
+            <field name="sequence">2</field>
+        </record>
+
+        <record model="custom.fired" id="custom_fire_163_1">
+            <field name="name">Por haber sido sometido el empleador, mediante resolución judicial, a un procedimiento concursal de liquidación de sus bienes.</field>
+            <field name="description">La que se configura por haber sido sometido el empleador, mediante resolución judicial, a un procedimiento concursal de liquidación de sus bienes. Su invocación corresponde efectuarla al liquidador designado en dicho procedimiento. Esta causal opera aún cuando se apruebe la continuación de las actividades económicas del deudor, caso en el cual el liquidador deberá celebrar los nuevos contratos de trabajo que estime necesarios para llevar adelante tal continuación.</field>
+            <field name="article">163</field>
+            <field name="sequence">1</field>
+        </record>
+
+</odoo>

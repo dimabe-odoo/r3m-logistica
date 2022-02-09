@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="custom_isapre_form_view" model="ir.ui.view">
+            <field name="name">custom_isapre.form</field>
+            <field name="model">custom.isapre</field>
+            <field name="arch" type="xml">
+                <form string="ModelTitle">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="example_title"/>
+                            <h1>
+                                <field name="name" placeholder="Title"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                            </group>
+                            <group>
+                                <field name="vat"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="custom_isapre_tree_view" model="ir.ui.view">
+            <field name="name">custom.isapre.tree</field>
+            <field name="model">custom.isapre</field>
+            <field name="arch" type="xml">
+                <tree string="ModelTitle">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="vat"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="custom_isapre_act_window" model="ir.actions.act_window">
+            <field name="name">Isapres</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">custom.isapre</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="ModelTitle" id="custom_isapre_menu" parent="hr_work_entry_contract.menu_hr_payroll_root" action="custom_isapre_act_window"/>
+
+</odoo>

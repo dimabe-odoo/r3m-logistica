@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_leave_allocation_view_tree_inherit" model="ir.ui.view">
+            <field name="name">hr.leave.allocation.tree.inherit</field>
+            <field name="model">hr.leave.allocation</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_allocation_view_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="consumed_state" widget="badge" decoration-info="consumed_state == 'to_consume'" decoration-success="consumed_state == 'consumed'"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

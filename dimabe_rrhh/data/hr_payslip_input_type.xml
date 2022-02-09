@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record id="hr_payslip_input_type_agui" model="hr.payslip.input.type">
+            <field name="name">AGUINALDO</field>
+            <field name="code">AGUI</field>
+        </record>
+        <record id="hr_payslip_input_type_asue" model="hr.payslip.input.type">
+            <field name="name">ANTICIPO SUELDO</field>
+            <field name="code">ASUE</field>
+        </record>
+        <record id="hr_payslip_input_type_comi" model="hr.payslip.input.type">
+            <field name="name">COMISIONES</field>
+            <field name="code">COMI</field>
+        </record>
+        <record id="hr_payslip_input_type_hexde" model="hr.payslip.input.type">
+            <field name="name">HORAS DESCUENTOS</field>
+            <field name="code">HEXDE</field>
+        </record>
+        <record id="hr_payslip_input_type_hex50" model="hr.payslip.input.type">
+            <field name="name">HORAS EXTRA ART 32</field>
+            <field name="code">HEX50</field>
+        </record>
+</odoo>

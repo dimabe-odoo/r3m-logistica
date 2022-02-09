@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <record id="custom_apv_cuprum_afp_cuprum" model="custom.benefits.rrhh">
+            <field name="name">Cuprum</field>
+            <field name="code">003</field>
+            <field name="data_type_id" ref="custom_data_initial_apv"/>
+            <field name="type">afp</field>
+        </record>
+        <record id="custom_apv_cuprum_afp_habitat" model="custom.benefits.rrhh">
+            <field name="name">Habitat</field>
+            <field name="code">005</field>
+            <field name="data_type_id" ref="custom_data_initial_apv"/>
+            <field name="type">afp</field>
+        </record>
+        <record id="custom_apv_cuprum_afp_provida" model="custom.benefits.rrhh">
+            <field name="name">Provida</field>
+            <field name="code">008</field>
+            <field name="data_type_id" ref="custom_data_initial_apv"/>
+            <field name="type">afp</field>
+        </record>
+        <record id="custom_apv_cuprum_afp_planvital" model="custom.benefits.rrhh">
+            <field name="name">PlanVital</field>
+            <field name="code">029</field>
+            <field name="data_type_id" ref="custom_data_initial_apv"/>
+            <field name="type">afp</field>
+        </record>
+        <record id="custom_apv_cuprum_afp_capital" model="custom.benefits.rrhh">
+            <field name="name">Capital</field>
+            <field name="code">033</field>
+            <field name="data_type_id" ref="custom_data_initial_apv"/>
+            <field name="type">afp</field>
+        </record>
+        <record id="custom_apv_cuprum_afp_modelo" model="custom.benefits.rrhh">
+            <field name="name">Modelo</field>
+            <field name="code">034</field>
+            <field name="data_type_id" ref="custom_data_initial_apv"/>
+            <field name="type">afp</field>
+        </record>
+        <record id="custom_apv_cuprum_afp_uno" model="custom.benefits.rrhh">
+            <field name="name">Uno</field>
+            <field name="code">035</field>
+            <field name="data_type_id" ref="custom_data_initial_apv"/>
+            <field name="type">afp</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_abn_amro" model="custom.benefits.rrhh">
+            <field name="name">Abn Amro (Chile) Seguro de Vida S.A.</field>
+            <field name="code">100</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_agf_allianz" model="custom.benefits.rrhh">
+            <field name="name">AGG Allianz Chile Compañia de Seguros Vida S.A</field>
+            <field name="code">101</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_santander" model="custom.benefits.rrhh">
+            <field name="name">Santander Seguro de Vida S.A</field>
+            <field name="code">102</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_bci" model="custom.benefits.rrhh">
+            <field name="name">BCI Seguro Vida S.A</field>
+            <field name="code">103</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_banchile" model="custom.benefits.rrhh">
+            <field name="name">BanChile Seguro de Vida S.A</field>
+            <field name="code">104</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_bbva" model="custom.benefits.rrhh">
+            <field name="name">BBVA Seguro Vida S.A</field>
+            <field name="code">105</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_bice" model="custom.benefits.rrhh">
+            <field name="name">BICE Vida Compañia de Seguros S.A</field>
+            <field name="code">106</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_cl_consolided" model="custom.benefits.rrhh">
+            <field name="name">Chilena Consolidada Seguro de Vida S.A.</field>
+            <field name="code">107</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_cigna" model="custom.benefits.rrhh">
+            <field name="name">Cigna Compañia de Seguros de Vida S.A.</field>
+            <field name="code">108</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_cn_life" model="custom.benefits.rrhh">
+            <field name="name">Cn Life, Compañia de Seguros de vida S.A.</field>
+            <field name="code">109</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_cardif" model="custom.benefits.rrhh">
+            <field name="name">Compañia de Seguros de Vida CARDIF S.A</field>
+            <field name="code">110</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_consorcio" model="custom.benefits.rrhh">
+            <field name="name">Cia. de Seg. de Vida Consorcio Nacional de Seg. S.A.</field>
+            <field name="code">111</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_huelen" model="custom.benefits.rrhh">
+            <field name="name">Compañia de Seguros de Vida Huelen S.A.</field>
+            <field name="code">113</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_vitalis" model="custom.benefits.rrhh">
+            <field name="name">Compañia de Seguros de Vida Vitalis S.A.</field>
+            <field name="code">115</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_confuturo" model="custom.benefits.rrhh">
+            <field name="name">Compañia de Seguros ConFuturo S.A.</field>
+            <field name="code">116</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_sura" model="custom.benefits.rrhh">
+            <field name="name">Seguro de Vida Sura S.A</field>
+            <field name="code">118</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_metlife" model="custom.benefits.rrhh">
+            <field name="name">Metlife Chile Seguro de Vida S.A</field>
+            <field name="code">121</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_mapfre" model="custom.benefits.rrhh">
+            <field name="name">Mapfre Compañia de Seguro de Vida de Chile S.A</field>
+            <field name="code">123</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_cl" model="custom.benefits.rrhh">
+            <field name="name">Mutual de Seguros de Chile</field>
+            <field name="code">125</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_carabineros" model="custom.benefits.rrhh">
+            <field name="name">Mutualidad de Carabineros</field>
+            <field name="code">126</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_army" model="custom.benefits.rrhh">
+            <field name="name">Mutualidad del Ejercito y Aviacion </field>
+            <field name="code">127</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_ohio" model="custom.benefits.rrhh">
+            <field name="name">OHIO National Seguros de Vida S.A.</field>
+            <field name="code">128</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_principal" model="custom.benefits.rrhh">
+            <field name="name">Principal Compañia de Seguros de Vida Chile S.A.</field>
+            <field name="code">129</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_renta" model="custom.benefits.rrhh">
+            <field name="name">Renta Nacional Compañia de Seguros de Vida S.A.</field>
+            <field name="code">130</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_security" model="custom.benefits.rrhh">
+            <field name="name">Seguros de Vida Security Prevision S.A.</field>
+            <field name="code">131</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_penta" model="custom.benefits.rrhh">
+            <field name="name">Compañia de Seguros Generales PENTA-Security S.A.</field>
+            <field name="code">134</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_penta_vida" model="custom.benefits.rrhh">
+            <field name="name">Penta Vida Compañia de Seguro de Vida S.A.</field>
+            <field name="code">135</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+        <record id="custom_apv_cuprum_cia_ace" model="custom.benefits.rrhh">
+            <field name="name">Ace Seguros S.A</field>
+            <field name="code">136</field>
+            <field name="data_type_id" ref="custom_data_initial_complementary"/>
+            <field name="type">safe</field>
+        </record>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record id="custom_afp_cuprum" model="custom.afp">
+            <field name="name">Cuprum</field>
+            <field name="code">03</field>
+            <field name="vat">76.240.079-0</field>
+        </record>
+        <record id="custom_afp_habitat" model="custom.afp">
+            <field name="name">Habitat</field>
+            <field name="code">05</field>
+            <field name="vat">98.000.100-8</field>
+        </record>
+        <record id="custom_afp_provida" model="custom.afp">
+            <field name="name">ProVida</field>
+            <field name="code">08</field>
+            <field name="vat">76.265.736-8</field>
+        </record>
+        <record id="custom_afp_planvital" model="custom.afp">
+            <field name="name">PlanVital</field>
+            <field name="code">29</field>
+            <field name="vat">98.001.200-K</field>
+        </record>
+        <record id="custom_afp_capital" model="custom.afp">
+            <field name="name">Capital</field>
+            <field name="code">33</field>
+            <field name="vat">98.000.000-1</field>
+        </record>
+        <record id="custom_afp_modelo" model="custom.afp">
+            <field name="name">Modelo</field>
+            <field name="code">34</field>
+            <field name="vat">76.762.250-3</field>
+        </record>
+        <record id="custom_afp_uno" model="custom.afp">
+            <field name="name">UNO</field>
+            <field name="code">35</field>
+            <field name="vat">76.960.424-3</field>
+        </record>
+</odoo>

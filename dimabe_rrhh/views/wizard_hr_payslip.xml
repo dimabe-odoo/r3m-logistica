@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="wizard_hr_payslip_report_view" model="ir.ui.view">
+        <field name="name">Libro de Remuneraciones</field>
+        <field name="model">wizard.hr.payslip</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="company_id" string="Compañia" required="1" />
+                        <field name="indicator_id"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="generate_remuneration_book" string="Generar XLSX" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_hr_payslip_report_previred_view" model="ir.ui.view">
+        <field name="name">Archivo Previred</field>
+        <field name="model">wizard.hr.payslip</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="company_id" string="Compañia"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_generate_csv" string="Generar CSV" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_hr_payslip_centralization_report_view" model="ir.ui.view">
+        <field name="name">Libro de Centralización</field>
+        <field name="model">wizard.hr.payslip</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="company_id" string="Compañia" required="1" />
+                        <field name="indicator_id"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="generate_centralization_book" string="Generar XLSX" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_payslip_menu" model="ir.actions.act_window">
+        <field name="name">Libro de Remuneraciones</field>
+        <field name="res_model">wizard.hr.payslip</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_hr_payslip_report_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_payslip_previred_menu" model="ir.actions.act_window">
+        <field name="name">Archivo Previred</field>
+        <field name="res_model">wizard.hr.payslip</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_hr_payslip_report_previred_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_payslip_centralization_menu" model="ir.actions.act_window">
+        <field name="name">Libro de Centralización</field>
+        <field name="res_model">wizard.hr.payslip</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_hr_payslip_centralization_report_view"/>
+        <field name="target">new</field>
+    </record>
+    
+    <menuitem name="Libro de Remuneraciones" parent="hr_payroll.menu_hr_payroll_report"
+              action="action_payslip_menu" id="remuneration_book_item"/>
+
+    <menuitem name="Previred" parent="dimabe_rrhh.hr_pension_menu" action="action_payslip_previred_menu"
+              id="previred_item"/>
+
+    <menuitem name="Libro de Centralización" parent="hr_payroll.menu_hr_payroll_report"
+              action="action_payslip_centralization_menu" id="centralization_book_item"/>
+</odoo>

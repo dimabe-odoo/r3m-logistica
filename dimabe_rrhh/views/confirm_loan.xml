@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_confirm_loan" model="ir.ui.view">
+            <field name="name">Confirmar Prestamo finalizado</field>
+            <field name="model">confirm.done.loan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <p>El prestamo que esta creando ya se encuent</p>
+                    </group>
+                    <footer>
+                        <button type="object" name="done" string="Confirmar" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

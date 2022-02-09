@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="custom_payslip_overdraft_tree_view" model="ir.ui.view">
+            <field name="name">custom_payslip_overdraft_tree_view</field>
+            <field name="model">custom.payslip_overdraft</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="amount_residual"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="custom_payslip_overdraft_act_window" model="ir.actions.act_window">
+            <field name="name">Sobregiros</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">custom.payslip_overdraft</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="custom_payslip_overdraft_form_view" model="ir.ui.view">
+            <field name="name">custom_payslip_overdraft.from</field>
+            <field name="model">custom.payslip_overdraft</field>
+            <field name="arch" type="xml">
+              <form string="Sobregiros">
+                  <sheet>
+                      <group>
+                          <field name="employee_id"/>
+                          <field name="amount_residual"/>
+                      </group>
+                  </sheet>
+              </form>
+            </field>
+        </record>
+
+        <menuitem name="Sobregiros" id="custom_payslip_overdraft_menu" parent="hr_work_entry_contract.menu_hr_payroll_root"
+                  sequence="102" action="custom_payslip_overdraft_act_window" groups="hr_payroll.group_hr_payroll_manager"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="custom_data_form_view" model="ir.ui.view">
+        <field name="name">custom_data.form</field>
+        <field name="model">custom.data</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="oe_title">
+                    <label for="name"/>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="code"/>
+                        <field name="value"/>
+                        <field name="data_type_id"/>
+                        <field name="show_vat" invisible="1"/>
+                        <field name="vat" attrs="{'invisible':[('show_vat','=',False)]}"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="custom_data_tree_view" model="ir.ui.view">
+        <field name="name">custom_data.tree</field>
+        <field name="model">custom.data</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="value"/>
+                <field name="data_type_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="custom_data_act_window">
+        <field name="name">Tramos</field>
+        <field name="res_model">custom.data</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="custom_data_tree_view"/>
+    </record>
+
+    <menuitem name="Tramos" id="custom_menu" parent="hr_work_entry_contract.menu_hr_payroll_configuration" action="custom_data_act_window"/>
+</odoo>

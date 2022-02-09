@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="custom_vacation_form" model="ir.ui.view">
+            <field name="name">custom_vacation.form</field>
+            <field name="model">custom.vacation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button type="object" name="update_vacation_lines" string="Actualizar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="employee_id"/>
+                            <h1>
+                                <field name="employee_id" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="leave_type_id" domain="[('is_vacation','=', True)]"/>
+                                <field name="contract_id" domain="[('employee_id','=',employee_id)]"/>
+                                <field name="date_start" readonly="1"/>
+                                <field name="max_vacations"/>
+                            </group>
+                            <group>
+                                <field name="vacations_history_total" readonly="1"/>
+                                <field name="vacations_remaining" readonly="1"/>
+                                <field name="progressive_vacation_by_period" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Periodos">
+                                <field name="period_ids">
+                                    <tree create="false" editable="false" decoration-success="full_day_consumed == True"  decoration-info="full_day_consumed == False">
+                                        <field name="period_number"/>
+                                        <field name="date_start"/>
+                                        <field name="date_finish"/>
+                                        <field name="vacation_days"/>
+                                        <field name="vacation_days_consumed"/>
+                                        <field name="vacation_days_remaining"/>
+                                        <field name="full_day_consumed" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Vacaciones">
+                                <group>
+                                    <field name="leave_period_id" domain="[('employee_id','=',employee_id), ('contract_id','=',contract_id), ('full_day_consumed', '=', False)]"/>
+                                    <field name="leave_date_from"/>
+                                    <field name="leave_date_to"/>
+                                    <field name="leave_number_of_days" readonly="1"/>
+                                    <field name="leave_name"/>
+                                    <button name="generate_leave" string="Generar" class="oe_highlight" type="object"/>
+                                </group>
+                                <field name="leave_ids">
+                                    <tree editable="false" create="false">
+                                        <button name="action_approve" string="Aprobar" class="oe_highlight" type="object"  attrs="{'invisible': [('state','!=','confirm')]}"/>
+                                        <button name="action_refuse" string="Rechazar" class="oe_highlight" type="object"  attrs="{'invisible': [('state','not in',['validate','validate1'])]}"/>
+                                        <button name="action_draft" string="Marcar como Borrador" class="oe_highlight" type="object"  attrs="{'invisible': [('state','!=','refuse')]}"/>
+                                        <button name="action_confirm" string="Confirmar" class="oe_highlight" type="object"  attrs="{'invisible': [('state','!=','draft')]}"/>
+                                        <field name="state" readonly="1"/>
+                                        <field name="name" readonly="1"/>
+                                        <field name="period_id" readonly="1"/>
+                                        <field name="date_from" readonly="1"/>
+                                        <field name="date_to" readonly="1"/>
+                                        <field name="number_of_days" readonly="1"/>
+                                        <field name="approve_date" readonly="1"/>
+                                        <button name="generate_report" string="Imprimir" class="oe_highlight" type="object"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Asignaciones" name="line">
+                                <field name="leave_allocation_line_ids">
+                                    <tree create="false" editable="false" delete="false" default_order="date_from desc" decoration-success="consumed_state == 'consumed'" decoration-info="consumed_state == 'partial'">
+                                        <field name="date_from" readonly="1"/>
+                                        <field name="number_of_days_display" readonly="1" digits="[0,3]"/>
+                                        <field name="day_consumed" readonly="1" digits="[0,3]"/>
+                                        <field name="consumed_in_period"/>
+                                        <field name="consumed_state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="custom_vacation_tree_view" model="ir.ui.view">
+            <field name="name">custom_vacation_tree_view</field>
+            <field name="model">custom.vacation</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="contract_id"/>
+                    <field name="max_vacations"/>
+                    <field name="progressive_vacation_by_period"/>
+                    <field name="vacations_history_total"/>
+                    <field name="vacations_remaining"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="custom_vacation_act_window" model="ir.actions.act_window">
+            <field name="name">Vacaciones</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">custom.vacation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Control de Vacaciones" id="custom_vacation_menu" parent="hr_holidays.menu_hr_holidays_root"
+                  sequence="100" action="custom_vacation_act_window" groups="hr_payroll.group_hr_payroll_manager"/>
+
+    </data>
+</odoo>
