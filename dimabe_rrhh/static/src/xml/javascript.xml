@@ -1,0 +1,8 @@
+<template id="assets_backend" name="js assets" inherit_id="web.assets_backend">
+    <xpath expr="." position="inside">
+        <script
+            type="text/javascript"
+            src="/dimabe_rrhh/static/src/js/action_get_holidays.js">
+         </script>
+    </xpath>
+</template>

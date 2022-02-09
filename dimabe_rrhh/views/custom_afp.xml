@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="custom_afp_form_view" model="ir.ui.view">
+            <field name="name">dimabe_rrhh.custom_afp.form</field>
+            <field name="model">custom.afp</field>
+            <field name="arch" type="xml">
+                <form string="AFP">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Nombre"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                                <field name="vat"/>
+                                <field name="rate"/>
+                                <field name="sis"/>
+                                <field name="independent"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="custom_afp_tree_view" model="ir.ui.view">
+            <field name="name">dimabe_rrhh.custom_afp.tree</field>
+            <field name="model">custom.afp</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="vat"/>
+                    <field name="rate"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="cs_act_window" model="ir.actions.act_window">
+            <field name="name">AFP</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">custom.afp</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="AFP" id="custom_afp_menu" parent="hr_payroll.menu_hr_payroll_root" action="cs_act_window"/>
+
+</odoo>

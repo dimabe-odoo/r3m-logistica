@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="custom_data_ccaf00" model="custom.data">
+            <field name="name">Tramo A</field>
+            <field name="code">A</field>
+            <field name="data_type_id" ref="custom_data_initial_section"/>
+        </record>
+        <record id="custom_data_ccaf01" model="custom.data">
+            <field name="name">Tramo B</field>
+            <field name="code">B</field>
+            <field name="data_type_id" ref="custom_data_initial_section"/>
+        </record>
+        <record id="custom_data_ccaf02" model="custom.data">
+            <field name="name">Tramo C</field>
+            <field name="code">C</field>
+            <field name="data_type_id" ref="custom_data_initial_section"/>
+        </record>
+        <record id="custom_data_ccaf03" model="custom.data">
+            <field name="name">Tramo D</field>
+            <field name="code">D</field>
+            <field name="data_type_id" ref="custom_data_initial_section"/>
+        </record>
+</odoo>

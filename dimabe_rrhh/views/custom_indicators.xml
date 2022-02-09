@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="custom_indicators_form_view" model="ir.ui.view">
+            <field name="name">custom_indicators.form</field>
+            <field name="model">custom.indicators</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button type="object" name="get_data" string="Obtener Informacion"/>
+                        <button string="Validar" type="object" name="action_done" states="draft" class="oe_highlight"/>
+				        <button string="Volver a borrador" type="object" name="action_draft" states="done" />
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="month"/>
+                            <field name="year"/>
+                            <field name="company_id" required="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Indicadores">
+                                <group>
+                                    <field name="unique_tax_ids">
+                                        <tree>
+                                            <field name="salary_from"/>
+                                            <field name="salary_to"/>
+                                            <field name="factor"/>
+                                            <field name="amount_to_reduce"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                                <group>
+                                    <field name="data_ids">
+                                        <tree create="false" delete="false" editable="false">
+                                            <field name="name"/>
+                                            <field name="type"/>
+                                            <field name="value_show"/>
+                                            <field name="percentage_show"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Instituciones Relacionados">
+                                <group>
+                                    <group>
+                                        <field name="ccaf_type_id" invisible="1"/>
+                                        <field name="ccaf_id" domain="[('data_type_id','=',ccaf_type_id)]"/>
+                                        <field name="ccaf_rate"/>
+                                        <field name="national_health_fund_rate"/>
+                                        <field name="ips_rate"/>
+                                        <field name="max_taxable_health_rate"/>
+                                    </group>
+                                    <group>
+                                        <field name="has_mutuality"/>
+                                        <field name="institute_occupational_safety" attrs="{'invisible': [('has_mutuality', '=', True)]}"/>
+                                        <field name="cl_sanna_law" attrs="{'invisible': [('has_mutuality', '=', False)]}"/>
+                                        <field name="mutuality_type_id" invisible="1"/>
+                                        <field name="mutuality_id" attrs="{'invisible': [('has_mutuality', '=', False)]}" domain="[('data_type_id','=',mutuality_type_id)]"/>
+                                        <field name="mutuality_ids" attrs="{'invisible': [('has_mutuality', '=', False)]}">
+                                            <tree>
+                                                <field name="company_id" required="1"/>
+                                                <field name="value" />
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="custom_indicators_tree_view" model="ir.ui.view">
+            <field name="name">custom_indicators.tree</field>
+            <field name="model">custom.indicators</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="custom_indicators_act_window" model="ir.actions.act_window">
+            <field name="name">Indicadores</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">custom.indicators</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Indicadores" id="custom_indicators_menu" parent="dimabe_rrhh.hr_pension_menu" action="custom_indicators_act_window"/>
+
+</odoo>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="report_settlement">
+            <t t-call="web.html_container">
+                <t t-set="l" t-value="0"/>
+                <t t-set="copies" t-value="3"/>
+                <t t-foreach="range(copies)" t-as="q">
+                    <div class="page">
+                        <t t-foreach="docs" t-as="d">
+                            <t t-set="l" t-value="l +1"/>
+                            <!--<div style="width: 100%;">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td style="width:50%;">
+                                            <div style="height:100px; text-align: left; padding: 10px;">
+                                                <img t-att-src="'data:image/png;base64,%s' % to_text(res_company.logo)"
+                                                     style="max-width: 200px; max-height: 120px;"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br/>-->
+                            <div style="width: 100%;">
+                                <div>
+                                    <div style="text-align: center;">
+                                        <h1>Finiquito de Contrato de Trabajo</h1>
+                                    </div>
+                                    <div style="text-align: justify; font-weight: bold; width: 100%; font-size: 14px;">
+                                        <p>
+                                            <span t-esc="d.intro_text()"/>
+                                        </p>
+                                        <p>
+                                            <span t-esc="d.first_item()"/>
+                                        </p>
+                                        <p>
+                                            <span t-esc="d.second_item_1()"/>
+                                        </p>
+                                        <table style="font-weight: bold; width: 80%; margin: 0 auto; font-size: 14px;">
+                                            <tr>
+                                                <td style="width:80%;">REMUNERACIONES PENDIENTES</td>
+                                                <td style="width:5%;">: $</td>
+                                                <td style="width:15%; text-align: right;"><span t-esc="d.roundclp(d.pending_remuneration_payment)"/> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>INDEMNIZACIÓN AVISO PREVIO</td>
+                                                <td>: $</td>
+                                                <td style="text-align: right;"><span t-esc="d.roundclp(d.compensation_warning)"/> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>INDEMNIZACIÓN AÑOS DE SERVICIO</td>
+                                                <td>: $</td>
+                                                <td style="text-align: right;"><span t-esc="d.roundclp(d.compensation_years)"/> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>FERIADO PROPORCIONAL (<span style="margin-left:4px; margin-right:4px;" t-esc="d.compensation_vacations_days"/>día(s))</td>
+                                                <td>: $</td>
+                                                <td style="text-align: right;"><span t-esc="d.roundclp(d.compensation_vacations)"/> </td>
+                                            </tr>
+                                            <t t-foreach="d.line_ids" t-as="line">
+                                                <tr>
+                                                    <td>
+                                                        <span style="text-transform: uppercase;" t-field="line.rule_id.name"/>
+                                                    </td>
+                                                    <td>: $</td>
+                                                    <td style="text-align: right;">
+                                                        <t t-if="line.rule_id.category_id.code in ['DES', 'ODES']">
+                                                            -
+                                                        </t>
+                                                        <span t-esc="d.roundclp(line.amount)"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                            <tr>
+                                                <td>TOTAL</td>
+                                                <td>: $</td>
+                                                <td style="text-align: right;"><span t-esc="d.roundclp(d.settlement)"/></td>
+                                            </tr>
+                                        </table>
+                                        <p>
+                                            <span t-esc="d.second_item_2()"/>
+                                        </p>
+                                        <p>
+                                            <span t-esc="d.third_item()"/>
+                                        </p>
+                                        <p>
+                                            <span t-esc="d.fourth_item()"/>
+                                        </p>
+                                        <p>
+                                            <span t-esc="d.fifth_item()"/>
+                                        </p>
+                                        <p>
+                                            SEXTO: Asimismo, declara el trabajador que, en todo caso, y a todo evento, renuncia expresamente a cualquier derecho, acción o
+                                            reclamo que eventualmente tuviere o pudiere corresponderle en contra del empleador, en relación directa o indirecta con su contrato
+                                            de trabajo, con los servicios prestados, con la terminación del referido contrato o dichos servicios, sepa que esos derechos o
+                                            acciones correspondan a remuneraciones, cotizaciones previsionales, de seguridad social o de salud, subsidios, beneficios
+                                            contractuales adicionales a las remuneraciones, indemnizaciones compensaciones, o con cualquier otra causa o concepto.
+                                        </p>
+                                        <p>
+                                            <span t-esc="d.final_item()"/>
+                                        </p>
+                                    </div>
+                                    <div style="width: 100%; margin-top: 120px;">
+                                        <div style="width: 100%; ">
+                                            <table width="100%;">
+                                                <tr>
+                                                    <td style="width: 40%">
+                                                        <hr style="border: 1px solid;"/>
+                                                    </td>
+                                                    <td style="width: 20%"></td>
+                                                    <td style="width: 40%">
+                                                        <hr style="border: 1px solid;"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: center; font-weight: bold; font-size: 13px;">FIRMA EMPLEADOR
+                                                    </td>
+                                                    <td></td>
+                                                    <td style="text-align: center; font-weight: bold; font-size: 13px;">FIRMA
+                                                        TRABAJADOR
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: center;">
+                                                        <span style="font-weight: bold; font-size: 13px;"
+                                                              t-field="res_company.name"/>
+                                                    </td>
+                                                    <td></td>
+                                                    <td style="text-align: center;">
+                                                        <span style="font-weight: bold; font-size: 13px;" t-field="d.employee_id"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: center; font-size: 13px;">
+                                                        <strong>R.U.T.</strong><span style="font-weight: bold; margin-left:4px;" t-esc="d.vat_cl_formated(res_company.vat)"/>
+                                                    </td>
+                                                    <td></td>
+                                                    <td style="text-align: center; font-size: 13px;">
+                                                        <strong>R.U.T.</strong><span style="font-weight: bold; margin-left:4px;" t-esc="d.vat_cl_formated(d.employee_id.identification_id)"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div style="width: 100%; margin-top: 40px;">
+                                        <div style="width: 100%;">
+                                            <table width="100%" style="margin: 0 auto; font-weight: bold; font-size: 13px;">
+                                                <tr>
+                                                    <td colspan="2">NOTA:</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 2%;">•</td>
+                                                    <td>Las partes podrán acordar el fraccionamiento del pago de las
+                                                        indemnizaciones, en este caso, las cuotas deberán consignar los
+                                                        intereses y reajustes del período. dicho pacto debe ser
+                                                        ratificado ante la Inspección del Trabajo.
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 2%;">•</td>
+                                                    <td>El simple incumplimiento del pacto hará inmediatamente exigible
+                                                        el total de la deuda y será sancionado con multa administrativa.
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                    <t t-if="l == copies">
+                        <div style="page-break-after:avoid;"></div>
+                    </t>
+                    <t t-else="">
+                        <div style="page-break-after:always;"></div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="report_settlement_action" model="ir.actions.report">
+            <field name="name">Comprobante de Finiquito</field>
+            <field name="model">custom.settlement</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">dimabe_rrhh.report_settlement</field>
+            <field name="report_file">report_settlement_template</field>
+            <field name="binding_model_id" ref="dimabe_rrhh.model_custom_settlement"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="dimabe_rrhh.paper_format_letter_custom"/>
+        </record>
+    </data>
+</odoo>

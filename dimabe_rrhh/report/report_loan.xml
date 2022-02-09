@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="report_loan">
+            <t t-call="web.html_container">
+                <div class="page">
+                    <t t-foreach="docs" t-as="d">
+                        <div style="width: 100%;">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="width:50%;">
+                                        <div style="height:100px; text-align: left; padding: 10px;">
+                                            <img t-att-src="'data:image/png;base64,%s' % to_text(res_company.logo)"
+                                                 style="max-width: 200px; max-height: 120px;"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style="height:100px; text-align: left; padding: 10px">
+                                            <span style="font-size: 14px; font-weight: bold; color: #004080"
+                                                  t-field="d.display_name"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br/>
+                        <span style="font-weight: bold;font-size: 12px;" t-field="res_company.name"/>
+                        <br/>
+                        <span style="font-weight: bold;font-size: 12px;">RUT</span>
+                        <span style="font-weight: bold;font-size: 12px;" t-field="res_company.vat"/>
+                        <br/>
+                        <br/>
+                        <div style="width:100%;margin:0 auto;border:2px solid #0080bf; border-radius: 5px; margin-top:4px;">
+                            <table style="width:100%;font-size:11px;" cellspacing="0">
+                                <tr>
+                                    <tr style="background-color: #004080; font-weight: bold;">
+                                        <th style="width:100%;text-align:center;border-bottom:2px solid #0080bf; padding: 6px;"
+                                            colspan="4">
+                                            <span style="color: white;">Nombre:</span>
+                                            <span style="color: white;" t-field="d.employee_id.last_name"/>
+                                            <span style="color: white;" t-field="d.employee_id.mothers_name"/>
+                                            <span style="color: white;" t-field="d.employee_id.first_name"/>
+                                            <span style="color: white;" t-field="d.employee_id.middle_name"/>
+                                        </th>
+                                    </tr>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; width: 25%;border-right:2px solid #0080bf;border-bottom: 1px solid #0080bf; padding-right: 6px;">
+                                        R.U.T.</td>
+                                    <td style="text-align: center; width: 25%;border-right:2px solid #0080bf;border-bottom: 1px solid #0080bf; padding-left: 6px;">
+                                        <span t-field="d.employee_id.identification_id"/>
+                                    </td>
+                                    <td style="text-align: center; width: 25%;border-right:2px solid #0080bf;border-bottom: 1px solid #0080bf;padding-right: 6px;">
+                                        Cargo</td>
+                                    <td style="text-align: center; width: 25%;border-bottom: 1px solid #0080bf;padding-left: 6px;">
+                                        <span t-field="d.employee_id.job_title"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;border-right:2px solid #0080bf;border-bottom: 1px solid #0080bf;padding-right: 6px;">
+                                        Departmento</td>
+                                    <td style="text-align:center;border-right: 2px solid #0080bf;border-bottom: 1px solid #0080bf;padding-right: 6px;">
+                                        <span t-field="d.employee_id.department_id.name"/>
+                                    </td>
+                                    <td style="text-align: center;border-right:2px solid #0080bf;border-bottom: 1px solid #0080bf;padding-right: 6px;">
+                                        Fecha Primer Pago</td>
+                                    <td style="text-align: center;border-bottom: 1px solid #0080bf;padding-left: 6px;">
+                                        <span t-field="d.date_start"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;border-right: 2px solid #0080bf;border-bottom: 1px solid #0080bf;padding-right: 6px;">
+                                        Total de Cuotas
+                                    </td>
+                                    <td style="text-align: center;border-right: 2px solid #0080bf;border-bottom: 1px solid #0080bf;padding-right: 6px;">
+                                        <span t-field="d.fee_qty"/>
+                                    </td>
+                                    <td style="text-align: center;border-right: 2px solid #0080bf;border-bottom: 1px solid #0080bf;padding-right: 6px;">
+                                        Total Prestamo
+                                    </td>
+                                    <td style="text-align: center;border-right: 2px solid #0080bf;border-bottom: 1px solid #0080bf;padding-right: 6px;">
+                                        <span t-field="d.loan_total" t-options='{"widget": "float", "precision": 0}'/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br/>
+                        <div style="width:100%;margin:0 auto;border:2px solid #0080bf; border-radius: 5px; margin-top: 4px;">
+                            <table style="width:100%;font-size:11px;" cellspacing="0">
+                                <tr>
+                                    <th style="background-color: #004080;text-align:left;width:60%;border-right:2px solid #0080bf;border-bottom:2px solid #0080bf; padding: 6px;">
+                                        <span style="color: white;">ESTADO:</span>
+                                    </th>
+                                    <th style="background-color: #004080;text-align:left;width:60%;border-right:2px solid #0080bf;border-bottom:2px solid #0080bf; padding: 6px;">
+                                        <span style="color: white;">N°:</span>
+                                    </th>
+                                    <th style="background-color: #004080;text-align:left;width:20%;border-right:2px solid #0080bf;border-bottom:2px solid #0080bf; padding: 6px;">
+                                        <span style="color: white;">FECHA DE PAGO:</span>
+                                    </th>
+                                    <th style="background-color: #004080;text-align:left;width:20%;border-right:2px solid #0080bf;border-bottom:2px solid #0080bf; padding: 6px;">
+                                        <span style="color: white;">VALOR:</span>
+                                    </th>
+                                </tr>
+                                <t t-foreach="d.fee_ids" t-as="f">
+                                    <tr>
+                                        <t t-if="f.paid">
+                                            <td style="white-space: nowrap;border-right: 1px solid #0080bf;border-bottom: 1px solid #0080bf;padding-left: 6px">
+                                                <span>Pagado</span>
+                                            </td>
+                                        </t>
+                                        <t t-else="">
+                                            <td style="white-space: nowrap;border-right: 1px solid #0080bf;border-bottom: 1px solid #0080bf;padding-left: 6px">
+                                                <span>Por Pagar</span>
+                                            </td>
+                                        </t>
+                                        <td style="white-space: nowrap;border-right: 1px solid #0080bf;border-bottom: 1px solid #0080bf;padding-left: 6px">
+                                            <span t-field="f.number"/>
+                                        </td>
+                                        <td style="white-space: nowrap;border-right: 1px solid #0080bf;border-bottom: 1px solid #0080bf;border-left: 1px solid #0080bf;padding-left: 6px">
+                                            <span t-field="f.expiration_date"/>
+                                        </td>
+                                        <td style="white-space: nowrap;border-right: 1px solid #0080bf;border-bottom: 1px solid #0080bf;padding-left: 6px">
+                                            <span t-field="f.value" t-options='{"widget": "float", "precision": 0}'/>
+                                        </td>
+                                    </tr>
+                                    <t t-if="f.id == d.fee_ids[-1].id">
+                                        <tr>
+                                            <td style="background-color: #004080;color:white;font-weight: bold;text-align:left;width:20%;border-right:2px solid #0080bf;border-bottom:2px solid #0080bf; padding: 6px;" colspan="3">
+                                                Total:
+                                            </td>
+                                            <td style="background-color: #004080;color:white;font-weight: bold;white-space: nowrap;border: 1px solid #0080bf;padding-left: 6px">
+                                                <span t-field="d.loan_total" t-options='{"widget": "float", "precision": 0}'/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </table>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div style="width: 100%;  float: right; text-align: right;margin-top: 80px;">
+                        <table style="width: 100%;">
+                            <tr style="text-align: center;">
+                                <td style="width: 50%;"></td>
+                                <td style="width: 50%;">
+                                    <hr style="width: 100%; border:2px solid #0080bf; float: right;" />
+                                </td>
+                            </tr>
+                            <tr style="text-align: center;">
+                                <td style="width: 50%;"></td>
+                                <td style="width: 50%;">
+                                    <span style="font-size: 14px; font-weight: bold;" t-esc="d.employee_id.last_name.upper()"/>
+                                    <span style="font-size: 14px; font-weight: bold;" t-esc="d.employee_id.mothers_name.upper()" t-if="d.employee_id.mothers_name"/>
+                                    <span style="font-size: 14px; font-weight: bold;" t-esc="d.employee_id.first_name.upper()"/>
+                                    <span style="font-size: 14px; font-weight: bold;" t-esc="d.employee_id.middle_name.upper()" t-if="d.employee_id.middle_name"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    </t>
+                </div>
+            </t>
+        </template>
+        <record id="report_loan_action" model="ir.actions.report">
+            <field name="name">Prestamo</field>
+            <field name="model">custom.loan</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">dimabe_rrhh.report_loan</field>
+            <field name="report_file">report_loan_report_template</field>
+            <field name="binding_model_id" ref="dimabe_rrhh.model_custom_loan"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="dimabe_rrhh.paper_format_letter_custom"/>
+        </record>
+    </data>
+</odoo>

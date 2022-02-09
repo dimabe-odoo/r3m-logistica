@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="seq_custom_holidays" model="ir.sequence">
+    <field name="name">custom.holidays</field>
+    <field name="code">custom.holidays</field>
+    <field name="prefix">900</field>
+    <field name="padding">5</field>
+    <field name="company_id" eval="False"/>
+  </record>
+  <record id="custom_holidays_action" model="ir.actions.act_window">
+    <field name="name">Feriados</field>
+    <field name="res_model">custom.holidays</field>
+    <field name="view_mode">tree,graph,form,pivot</field>
+  </record>
+  <record id="custom_holidays_tree" model="ir.ui.view">
+    <field name="name">Feriados Chile</field>
+    <field name="model">custom.holidays</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="date"/>
+        <field name="type"/>
+        <field name="inalienable"/>
+      </tree>
+    </field>
+  </record>
+  <record id="custom_holidays_form" model="ir.ui.view">
+    <field name="name">Crear Feriado</field>
+    <field name="model">custom.holidays</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="date"/>
+            <field name="type"/>
+            <field name="inalienable"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+  <menuitem name="Feriados"
+            id="dimabe_rrhh.custom_holidays"
+            parent="hr_work_entry_contract.menu_hr_payroll_configuration"
+            action="custom_holidays_action"
+  />
+
+  <template id="button_holidays_render_js" inherit_id="web.assets_backend">
+    <xpath expr="." position="inside">
+      <script src="dimabe_rrhh/static/src/js/action_get_holidays.js" type="text/javascript"/>
+    </xpath>
+  </template>
+
+</odoo>

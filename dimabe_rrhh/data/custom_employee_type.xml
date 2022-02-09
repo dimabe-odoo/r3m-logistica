@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record id="custom_employee_type_0" model="custom.employee.type">
+            <field name="name">Activo (No Pensionado)</field>
+            <field name="code">0</field>
+        </record>
+        <record id="custom_employee_type_1" model="custom.employee.type">
+            <field name="name">Pensionado y Cotiza</field>
+            <field name="code">1</field>
+        </record>
+        <record id="custom_employee_type_2" model="custom.employee.type">
+            <field name="name">Pensionado y No Cotiza</field>
+            <field name="code">2</field>
+        </record>
+        <record id="custom_employee_type_3" model="custom.employee.type">
+            <field name="name">Activo > 65 años (Nunca Pensionado)</field>
+            <field name="code">3</field>
+        </record>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ir_cron_update_vacation_line" forcecreate='True' model="ir.cron">
+            <field name="name">Asignación de Feriado Legal</field>
+            <field eval="True" name="active"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="model_id" ref="model_custom_vacation"/>
+            <field name="state">code</field>
+            <field name="nextcall" eval="(DateTime.now().replace(hour=3, minute=55, second=0) + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="code">model.update_vacations_lines()</field>
+        </record>
+
+    </data>
+</odoo>

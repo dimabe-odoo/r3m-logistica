@@ -1,0 +1,3 @@
+<odoo>
+  <menuitem name="Previsionales" parent="hr_work_entry_contract.menu_hr_payroll_root" id="dimabe_rrhh.hr_pension_menu" sequence="80" groups="hr_payroll.group_hr_payroll_manager"/>
+</odoo>

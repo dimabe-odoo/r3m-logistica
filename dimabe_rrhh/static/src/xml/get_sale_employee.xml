@@ -1,0 +1,8 @@
+<template xml:space="preserve">
+    <t t-extend="ListView.buttons">
+      <t t-jquery="button.o_list_button_add" t-operation="after">
+        <button t-if="widget.modelName == 'custom.sale_employee'" id="getsaleemployee"
+                class="btn btn-primary oe_action_button" type="button" accesskey="o">Obtener Ventas Internas</button>
+      </t>
+    </t>
+  </template>

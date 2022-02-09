@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="hr_salary_rule_form_inherit" model="ir.ui.view">
+            <field name="name">hr_salary_rule_form_inherit</field>
+            <field name="model">hr.salary.rule</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='active']" position="after">
+                    <field name='is_bonus'/>
+                </xpath>
+                <xpath expr="//page[@name='general']" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+                <xpath expr="//field[@name='appears_on_payslip']" position="after">
+                    <field name="show_in_book"/>
+                    <field name="order_number"/>
+                    <field name="available_to_settlement"/>
+                    <field name="discount_in_fee" attrs="{'invisible':[('category_code', '!=', 'ODES')]}"/>
+                    <field name="category_code" invisible="1"/>
+                    <field name="is_permanent_discount" attrs="{'invisible':[('category_code', '!=', 'ODES')]}"/>
+                    <field name="is_other_savings" attrs="{'invisible':[('category_code', '!=', 'ODES')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_salary_rule_list_custom_inherit" model="ir.ui.view">
+            <field name="name">hr_salary_rule_list_custom_inherit</field>
+            <field name="model">hr.salary.rule</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_list"/>
+             <field name="arch" type="xml">
+                    <xpath expr="//field[@name='partner_id']" position="after">
+                        <field name='account_debit'/>
+                        <field name='account_credit'/>
+                    </xpath>
+             </field>
+        </record>
+</odoo>
