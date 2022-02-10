@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="custom_province_form_view" model="ir.ui.view">
+            <field name="name">Formulario de Provincia</field>
+            <field name="model">custom.province</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Region"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="code"/>
+                            <field name="region_id"/>
+                            <field name="geo_latitude"/>
+                            <field name="geo_longitude"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="custom_province_tree_view" model="ir.ui.view">
+            <field name="name">Listado de Provincias</field>
+            <field name="model">custom.province</field>
+            <field name="arch" type="xml">
+                <tree string="Provincias">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="region_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="custom_province_act_window" model="ir.actions.act_window">
+            <field name="name">Provincias (CL)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">custom.province</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem name="Provincias (CL)" id="custom_province_menu_item" parent="contacts.menu_localisation"
+                  action="custom_province_act_window"/>
+
+    </data>
+</odoo>

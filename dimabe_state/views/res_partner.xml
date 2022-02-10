@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="res_partner_form_inherit" model="ir.ui.view">
+            <field name="name">Formulario de Comuna</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='street2']" position="after">
+                    <group>
+                        <field name="commune_id"/>
+                        <field name="province_id" readonly="1"/>
+                        <field name="region_id" readonly="1"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <record id="res_partner_tree_inherit" model="ir.ui.view">
+            <field name="name">Listado de Comuna</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='city']" position="replace">
+                    <field name="commune_id" optional="show"/>
+                    <field name="province_id" optional="show"/>
+                    <field name="region_id"  optional="show"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
