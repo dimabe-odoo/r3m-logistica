@@ -48,7 +48,7 @@ class HrContract(models.Model):
 
     supplementary_insurance_agreed_quotes_uf = fields.Float('Cotizacion Pactada')
 
-    currency_isapre_id = fields.Many2one('res.currency', 'Moneda', domain=[('id', 'in', (45, 174))])
+    currency_isapre_id = fields.Many2one('res.currency', 'Moneda', domain=[('id', 'in', (45, 171))])
 
     is_pensionary = fields.Boolean('Pensionado')
 
