@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dimabe_state_custom_commune,dimabe_states.custom_commune,model_custom_commune,,1,1,1,1
+access_dimabe_state_custom_region,dimabe_state.custom_region,model_custom_region,,1,1,1,1
+access_dimabe_state_custom_province,dimabe_state.custom_province,model_custom_province,,1,1,1,1
