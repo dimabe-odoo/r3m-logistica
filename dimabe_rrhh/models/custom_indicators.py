@@ -12,14 +12,14 @@ class CustomIndicators(models.Model):
 
     name = fields.Char('Nombre')
 
-    data_ids = fields.One2many('custom.indicators.data','indicator_id',string='Datos')
+    data_ids = fields.One2many('custom.indicators.data', 'indicator_id', string='Datos')
 
-    unique_tax_ids = fields.One2many('custom.unique.tax','indicator_id',string="Impuesto Único 2° Categoría")
+    unique_tax_ids = fields.One2many('custom.unique.tax', 'indicator_id', string="Impuesto Único 2° Categoría")
 
     month = fields.Selection(
         [('jan', 'Enero'), ('feb', 'Febrero'), ('mar', 'Marzo'), ('apr', 'Abril'), ('may', 'Mayo'), ('jun', 'Junio'),
          ('jul', 'Julio'), ('aug', 'Agosto'), ('sep', 'Septiembre'), ('oct', 'Octubre'), ('nov', 'Noviembre'),
-         ('dec', 'Diciembre')],string='Mes')
+         ('dec', 'Diciembre')], string='Mes')
 
     year = fields.Float('Año', default=datetime.now().strftime('%Y'), digits=dp.get_precision('Year'))
 
@@ -41,23 +41,23 @@ class CustomIndicators(models.Model):
 
     institute_occupational_safety = fields.Float('ISL', help="Instituto de Seguridad Laboral")
 
-    ccaf_type_id = fields.Integer('custom.data.type',compute="_compute_ccaf_type")
+    ccaf_type_id = fields.Integer('custom.data.type', compute="_compute_ccaf_type")
 
-    mutuality_type_id = fields.Integer('custom.data.type',compute="_compute_mutuality_type")
+    mutuality_type_id = fields.Integer('custom.data.type', compute="_compute_mutuality_type")
 
     company_id = fields.Many2one('res.company', string='Compañía', default=lambda self: self.env.company)
 
     state = fields.Selection([
-        ('draft','Borrador'),
-        ('done','Validado'),
-        ], string=u'Estado', readonly=True, default='draft')
+        ('draft', 'Borrador'),
+        ('done', 'Validado'),
+    ], string=u'Estado', readonly=True, default='draft')
 
     cl_sanna_law = fields.Float('Ley SANNA %')
 
     def action_done(self):
         self.write({'state': 'done'})
         return True
-    
+
     def action_draft(self):
         self.write({'state': 'draft'})
         return True
@@ -71,31 +71,41 @@ class CustomIndicators(models.Model):
         if 'year' in vals.keys():
             year = vals['year']
         if 'company_id' in vals.keys():
-            company = self.env['res.company'].search([('id', '=',vals['company_id'])])
-        vals['name'] = str(month).replace('oct', 'Octubre').replace('nov', 'Noviembre').replace('dec', 'Diciembre').replace('jan', 'Enero').replace('feb', 'Febrero').replace('mar', 'Marzo').replace('apr', 'Abril').replace('may', 'Mayo').replace('jun', 'Junio').replace('7', 'Julio').replace('aug', 'Agosto').replace('sep', 'Septiembre') + " " + str(int(year)) +" " +str(company.name)
+            company = self.env['res.company'].search([('id', '=', vals['company_id'])])
+        vals['name'] = str(month).replace('oct', 'Octubre').replace('nov', 'Noviembre').replace('dec',
+                                                                                                'Diciembre').replace(
+            'jan', 'Enero').replace('feb', 'Febrero').replace('mar', 'Marzo').replace('apr', 'Abril').replace('may',
+                                                                                                              'Mayo').replace(
+            'jun', 'Junio').replace('7', 'Julio').replace('aug', 'Agosto').replace('sep', 'Septiembre') + " " + str(
+            int(year)) + " " + str(company.name)
         res = super(CustomIndicators, self).write(vals)
         return res
 
-    
     @api.onchange('month', 'year', 'company_id')
     def get_name(self):
-        self.name = str(self.month).replace('oct', 'Octubre').replace('nov', 'Noviembre').replace('dec', 'Diciembre').replace('jan', 'Enero').replace('feb', 'Febrero').replace('mar', 'Marzo').replace('apr', 'Abril').replace('may', 'Mayo').replace('jun', 'Junio').replace('7', 'Julio').replace('aug', 'Agosto').replace('sep', 'Septiembre') + " " + str(int(self.year)) + " "+ self.company_id.name
- 
+        self.name = str(self.month).replace('oct', 'Octubre').replace('nov', 'Noviembre').replace('dec',
+                                                                                                  'Diciembre').replace(
+            'jan', 'Enero').replace('feb', 'Febrero').replace('mar', 'Marzo').replace('apr', 'Abril').replace('may',
+                                                                                                              'Mayo').replace(
+            'jun', 'Junio').replace('7', 'Julio').replace('aug', 'Agosto').replace('sep', 'Septiembre') + " " + str(
+            int(self.year)) + " " + self.company_id.name
+
     @api.model
     def _compute_ccaf_type(self):
         self.ccaf_type_id = self.env.ref('dimabe_rrhh.custom_data_initial_ccaf').id
-    
+
     @api.model
     def _compute_mutuality_type(self):
         self.mutuality_type_id = self.env.ref('dimabe_rrhh.custom_data_initial_mutuality').id
-        
+
     @api.model
     def create(self, vals):
         if 'company_id' not in vals.keys():
             raise models.ValidationError('La compañía es requerida')
         company_id = self.env['res.company'].search([('id', '=', vals['company_id'])])
         vals['name'] = f'{self.get_month(vals["month"])} {vals["year"]} {company_id.name}'
-        last_indicator = self.env['custom.indicators'].search([('year', '=', vals["year"]), ('state','=','done')]).sorted(lambda x: x.create_date, reverse=True)
+        last_indicator = self.env['custom.indicators'].search(
+            [('year', '=', vals["year"]), ('state', '=', 'done')]).sorted(lambda x: x.create_date, reverse=True)
         if len(last_indicator) > 0:
             vals['ccaf_id'] = last_indicator[0].ccaf_id.id if last_indicator[0].ccaf_id else None
             vals['ccaf_rate'] = last_indicator[0].ccaf_rate
@@ -127,8 +137,8 @@ class CustomIndicators(models.Model):
         return cad
 
     def validate_indicator_registered(self):
-        indicator_data_ids = self.env['custom.indicators.data'].search([('indicator_id','=',self.id)])
-        if len(indicator_data_ids)>0:
+        indicator_data_ids = self.env['custom.indicators.data'].search([('indicator_id', '=', self.id)])
+        if len(indicator_data_ids) > 0:
             for item in indicator_data_ids:
                 item.unlink()
 
@@ -148,28 +158,28 @@ class CustomIndicators(models.Model):
                     row = 0
                     for d in item['data']:
                         self.env['custom.indicators.data'].create({
-                            'name':d['title'],
-                            'value':d['data'],
-                            'value_show':f'$ {d["data"]}',
-                            'type':'1',
+                            'name': d['title'],
+                            'value': d['data'],
+                            'value_show': f'$ {d["data"]}',
+                            'type': '1',
                             'last_month': row == 0,
-                            'indicator_id':self.id
+                            'indicator_id': self.id
                         })
-                        row +=1
+                        row += 1
             elif table == tables[1]:
                 table_data = self.get_utm_uta(table)
                 utm_uta = self.get_utm_uta(table)
                 self.env['custom.indicators.data'].create({
-                    'name':table_data['data'][0]['title'],
+                    'name': table_data['data'][0]['title'],
                     'value': d['data'],
                     'value_show': f'$ {table_data["data"][0]["value"]}',
-                    'type':'2',
-                    'indicator_id':self.id
+                    'type': '2',
+                    'indicator_id': self.id
                 })
                 self.env['custom.indicators.data'].create({
                     'name': table_data['data'][1]['title'],
                     'value': table_data['data'][1]['value'],
-                    'value_show':f'$ {table_data["data"][1]["value"]}',
+                    'value_show': f'$ {table_data["data"][1]["value"]}',
                     'type': '3',
                     'indicator_id': self.id
                 })
@@ -178,40 +188,40 @@ class CustomIndicators(models.Model):
                 for item in table_data:
                     for d in item['data']:
                         self.env['custom.indicators.data'].create({
-                            'name': d['title'].replace(':',''),
+                            'name': d['title'].replace(':', ''),
                             'value': d['data'],
                             'value_show': f'$ {d["data"]}',
                             'type': '4',
-                            'indicator_id':self.id
+                            'indicator_id': self.id
                         })
             elif table == tables[3]:
                 table_data = self.get_table_type_1(table)
                 for item in table_data:
                     for d in item['data']:
                         self.env['custom.indicators.data'].create({
-                            'name': d['title'].replace(':',''),
+                            'name': d['title'].replace(':', ''),
                             'value': d['data'],
                             'value_show': f'$ {d["data"]}',
                             'type': '5',
-                            'indicator_id':self.id
+                            'indicator_id': self.id
                         })
             elif table == tables[4]:
                 table_data = self.get_table_type_1(table)
                 for item in table_data:
                     for d in item['data']:
                         self.env['custom.indicators.data'].create({
-                            'name': d['title'].replace(':',''),
+                            'name': d['title'].replace(':', ''),
                             'value': d['data'],
                             'value_show': f'$ {d["data"]}',
                             'type': '6',
-                            'indicator_id':self.id
+                            'indicator_id': self.id
                         })
             elif table == tables[5]:
                 table_data = self.get_table_type_1(table)
                 for item in table_data:
                     for d in item['data']:
                         self.env['custom.indicators.data'].create({
-                            'name': d['title'].replace(':',''),
+                            'name': d['title'].replace(':', ''),
                             'value': d['data'],
                             'value_show': f'$ {d["data"]}',
                             'type': '7',
@@ -221,31 +231,31 @@ class CustomIndicators(models.Model):
                 data = self.get_safe(table)
                 for d in data:
                     self.env['custom.indicators.data'].create({
-                        'name':d['title'],
-                        'percentage_show':f'{d["value"]} %',
-                        'percentage_value':d['value'],
-                        'type':'8',
-                        'indicator_id':self.id
+                        'name': d['title'],
+                        'percentage_show': f'{d["value"]} %',
+                        'percentage_value': d['value'],
+                        'type': '8',
+                        'indicator_id': self.id
                     })
             elif table == tables[7]:
                 data = self.get_afp_data(table)
                 for d in data:
                     self.env['custom.indicators.data'].create({
-                        'name':d['title'],
-                        'percentage_show':f'{d["value"]} %',
-                        'percentage_value':d['value'],
-                        'type':'9',
-                        'indicator_id':self.id
+                        'name': d['title'],
+                        'percentage_show': f'{d["value"]} %',
+                        'percentage_value': d['value'],
+                        'type': '9',
+                        'indicator_id': self.id
                     })
             elif table == tables[8]:
                 data = self.get_household_allowance_data(table)
                 for d in data:
                     self.env['custom.indicators.data'].create({
-                        'name':d['title'],
-                        'value':d['value'],
+                        'name': d['title'],
+                        'value': d['value'],
                         'value_show': f'$ {d["value"]}',
-                        'type':'10',
-                        'indicator_id':self.id
+                        'type': '10',
+                        'indicator_id': self.id
                     })
 
         taxes = getTaxeUniques(self.get_month(self.month))
@@ -256,58 +266,58 @@ class CustomIndicators(models.Model):
                     'salary_to': item['to'],
                     'factor': item['factor'],
                     'amount_to_reduce': item['discount'],
-                    'indicator_id' : self.id
+                    'indicator_id': self.id
                 })
         else:
             self.createTaxesUniques(utm_uta)
 
-    def get_household_allowance_data(self,table):
+    def get_household_allowance_data(self, table):
         data = []
         a_section_amount = {
             'title': 'Tramo A - Monto',
-            'value':self.clear_string(table.select("strong")[4].get_text())
+            'value': self.clear_string(table.select("strong")[4].get_text())
         }
         data.append(a_section_amount)
         a_section_max = {
             'title': 'Tramo A - Tope',
-            'value':self.clear_string(table.select("strong")[5].get_text())[1:]
+            'value': self.clear_string(table.select("strong")[5].get_text())[1:]
         }
         data.append(a_section_max)
 
         b_section_amount = {
             'title': 'Tramo B - Monto',
-            'value':self.clear_string(table.select("strong")[6].get_text())
+            'value': self.clear_string(table.select("strong")[6].get_text())
         }
         data.append(b_section_amount)
         b_section_max = {
             'title': 'Tramo B - Tope',
-            'value':self.clear_string(table.select("strong")[7].get_text())[6:]
+            'value': self.clear_string(table.select("strong")[7].get_text())[6:]
         }
         data.append(b_section_max)
 
         c_section_amount = {
             'title': 'Tramo C - Monto',
-            'value':self.clear_string(table.select("strong")[8].get_text())
+            'value': self.clear_string(table.select("strong")[8].get_text())
         }
         data.append(c_section_amount)
         c_section_max = {
             'title': 'Tramo C - Tope',
-            'value':self.clear_string(table.select("strong")[9].get_text())[6:]
+            'value': self.clear_string(table.select("strong")[9].get_text())[6:]
         }
         data.append(c_section_max)
 
         return data
 
-    def get_afp_data(self,table):
+    def get_afp_data(self, table):
         data = []
         afp_rate_capital = {
             'title': 'Tasa Afp Capital',
-            'value':self.clear_string(table.select("strong")[8].get_text())
+            'value': self.clear_string(table.select("strong")[8].get_text())
         }
         data.append(afp_rate_capital)
         sis_rate_capital = {
             'title': 'Tasa SIS Capital',
-            'value':self.clear_string(table.select("strong")[9].get_text())
+            'value': self.clear_string(table.select("strong")[9].get_text())
         }
         data.append(sis_rate_capital)
         sis_rate_independent_capital = {
@@ -317,14 +327,14 @@ class CustomIndicators(models.Model):
         data.append(sis_rate_independent_capital)
 
         afp_rate_cuprum = {
-            'title':'Tasa Afp Cuprum',
-            'value':self.clear_string(
-            table.select("strong")[11].get_text().replace(" ", '').replace("%", '').replace("1ff8", ''))
+            'title': 'Tasa Afp Cuprum',
+            'value': self.clear_string(
+                table.select("strong")[11].get_text().replace(" ", '').replace("%", '').replace("1ff8", ''))
         }
         data.append(afp_rate_cuprum)
         sis_rate_cuprum = {
-            'title':'Tasa SIS Cuprum',
-            'value':self.clear_string(table.select("strong")[12].get_text())
+            'title': 'Tasa SIS Cuprum',
+            'value': self.clear_string(table.select("strong")[12].get_text())
         }
         data.append(sis_rate_cuprum)
         sis_rate_independent_cuprum = {
@@ -335,7 +345,7 @@ class CustomIndicators(models.Model):
 
         afp_rate_habitat = {
             'title': 'Tasa Afp Habitat',
-            'value':self.clear_string(table.select("strong")[14].get_text())
+            'value': self.clear_string(table.select("strong")[14].get_text())
         }
         data.append(afp_rate_habitat)
         sis_rate_habitat = {
@@ -368,7 +378,7 @@ class CustomIndicators(models.Model):
         afp_rate_provida = {
             'title': 'Tasa Afp Provida',
             'value': self.clear_string(
-            table.select("strong")[20].get_text().replace(" ", '').replace("%", '').replace("1ff8", ''))
+                table.select("strong")[20].get_text().replace(" ", '').replace("%", '').replace("1ff8", ''))
         }
         data.append(afp_rate_provida)
         sis_rate_provida = {
@@ -432,11 +442,11 @@ class CustomIndicators(models.Model):
         data.append(contract_fixed_term_employer)
 
         contract_undefined_eleven_or_more = {'title': 'Plazo Indefinido 11 años o más',
-                                            'value': self.clear_string(table.select("strong")[9].get_text())}
+                                             'value': self.clear_string(table.select("strong")[9].get_text())}
         data.append(contract_undefined_eleven_or_more)
 
         private_home_worker = {'title': 'Trabajador Casa Particular',
-                                             'value': self.clear_string(table.select("strong")[11].get_text())}
+                               'value': self.clear_string(table.select("strong")[11].get_text())}
         data.append(private_home_worker)
         return data
 
@@ -489,7 +499,6 @@ class CustomIndicators(models.Model):
         })
         return uf
 
-
     def get_month(self, month):
         if 'jan' == month:
             return 'Enero'
@@ -515,7 +524,6 @@ class CustomIndicators(models.Model):
             return 'Noviembre'
         elif 'dec' == month:
             return 'Diciembre'
-
 
     def createTaxesUniques(self, utm_uta):
         utm = 0
@@ -588,3 +596,10 @@ class CustomIndicators(models.Model):
         if len(unique_tax_ids) > 0:
             for item in unique_tax_ids:
                 item.unlink()
+
+    def get_indicator_name(self):
+        month = self.get_month(self.month)
+        return f'{month} {int(self.year)}'
+
+    def get_selection_label(self, object, field_name, field_value):
+        return _(dict(self.env[object].fields_get(allfields=[field_name])[field_name]['selection'])[field_value])

@@ -4,6 +4,8 @@ from py_linq import Enumerable
 from odoo.tools import float_compare, float_is_zero
 import datetime
 from dateutil.relativedelta import relativedelta
+from ..utils.roundformat_clp import format_clp, round_clp
+
 
 class HrPaySlip(models.Model):
     _inherit = 'hr.payslip'
@@ -37,6 +39,10 @@ class HrPaySlip(models.Model):
     was_payslip_undded = fields.Boolean('La Nómina volvió al estado anterior?', default=False)
 
     last_full_payslip = fields.Float('Última Renta Imponible 30 días')
+
+    def round_clp(self, total):
+        total_round = round_clp(total)
+        return total_round
 
     @api.model
     def _compute_basic_salary(self):
@@ -97,25 +103,26 @@ class HrPaySlip(models.Model):
             item.get_discount_overdrafts()
             loan_ids = self.env['custom.loan'].search(
                 [('employee_id', '=', item.employee_id.id), ('state', '=', 'in_process')])
-            #loan_ids = loan_ids.filtered(lambda a: item.date_from <= a.next_fee_date <= item.date_to)
+            # loan_ids = loan_ids.filtered(lambda a: item.date_from <= a.next_fee_date <= item.date_to)
             loans = []
             if self.can_collect_loan_discount():
                 for loan in loan_ids:
                     # if not self.input_line_ids.filtered(lambda a: a.code == loan.rule_id.code and a.amount > 0):
                     if loan not in item.loan_ids:
                         type_id = self.env['hr.payslip.input.type'].search([('code', '=', loan.rule_id.code)])
-                        #actual_fee = len(loan.fee_ids.filtered(lambda a: a.paid)) + 1
+                        # actual_fee = len(loan.fee_ids.filtered(lambda a: a.paid)) + 1
                         actual_fee = len(loan.fee_ids.filtered(lambda a: a.expiration_date < item.date_from)) + 1
                         if type_id:
                             amount = loan.next_fee_id.value
-                            loan_fee_ids = loan.fee_ids.filtered(lambda x: x.expiration_date >= item.date_from and x.expiration_date <= item.date_to)
+                            loan_fee_ids = loan.fee_ids.filtered(
+                                lambda x: x.expiration_date >= item.date_from and x.expiration_date <= item.date_to)
                             if len(loan_fee_ids) > 1:
                                 amount = 0
                                 actual_fee_text = ''
-                                actual_fee = actual_fee-1
+                                actual_fee = actual_fee - 1
                                 for fee in loan_fee_ids:
                                     actual_fee += 1
-                                    actual_fee_text += str(actual_fee)+ '-'
+                                    actual_fee_text += str(actual_fee) + '-'
                                     amount += fee.value
                             else:
                                 actual_fee_text = str(actual_fee)
@@ -160,7 +167,8 @@ class HrPaySlip(models.Model):
                 item.compute_sheet()
                 item.update_loan_date()
                 if int(item.line_ids.filtered(lambda a: a.code == 'LIQ').total) < 0:
-                    raise models.ValidationError(f'No se puede confirmar\nLa Nómina de Empleado {item.employee_id.name} tiene Alcance Liquido negativo: {item.net_salary}.')
+                    raise models.ValidationError(
+                        f'No se puede confirmar\nLa Nómina de Empleado {item.employee_id.name} tiene Alcance Liquido negativo: {item.net_salary}.')
                 if item.loan_ids:
                     for loan in item.loan_ids:
                         if loan not in item.fee_ids.mapped('loan_id'):
@@ -207,7 +215,6 @@ class HrPaySlip(models.Model):
                                 transaction = 'Descuento'
                             if line.sale_employee_id.invoice_id.move_type == 'out_refund':
                                 transaction = 'Devolución'
-
 
                             move_lines.append({
                                 'move_id': move_id.id,
@@ -287,7 +294,8 @@ class HrPaySlip(models.Model):
                         rate = 1
                         currency = 'CLP'
                         if item.currency == 'uf':
-                            rate = self.indicator_id.mapped('data_ids').filtered(lambda x: x.type == '1' and x.last_month).value
+                            rate = self.indicator_id.mapped('data_ids').filtered(
+                                lambda x: x.type == '1' and x.last_month).value
                             currency = f'{item.amount} UF'
                         self.env['hr.payslip.input'].create({
                             'additional_info': 'Ahorro ' + currency,
@@ -407,7 +415,7 @@ class HrPaySlip(models.Model):
 
     def get_discount_overdrafts(self):
         if self.employee_id:
-            overdraft_id = self.env['custom.payslip_overdraft'].search([('employee_id','=',self.employee_id.id)])
+            overdraft_id = self.env['custom.payslip_overdraft'].search([('employee_id', '=', self.employee_id.id)])
 
             if overdraft_id:
                 if overdraft_id.amount_residual > 0:
@@ -417,7 +425,8 @@ class HrPaySlip(models.Model):
                             'name': 'Sobregiro mes Anterior',
                             'code': 'SGIROMA'
                         })
-                    input_line_id = self.env['hr.payslip.input'].search([('payslip_id','=',self.id),('input_type_id','=',overdraft_discount_type_id.id)])
+                    input_line_id = self.env['hr.payslip.input'].search(
+                        [('payslip_id', '=', self.id), ('input_type_id', '=', overdraft_discount_type_id.id)])
                     if not input_line_id and not self.was_payslip_undded:
                         self.env['hr.payslip.input'].create({
                             'code': overdraft_discount_type_id.code,
@@ -456,7 +465,6 @@ class HrPaySlip(models.Model):
                     'amount_residual': input_id.amount
                 })
 
-
     def compute_sheet(self):
         for item in self:
             item.get_discount_overdrafts()
@@ -467,7 +475,6 @@ class HrPaySlip(models.Model):
                 res = super(HrPaySlip, item).compute_sheet()
 
             return res
-
 
     def exist_input(self, salary_rule_code):
         input_type_id = self.env['hr.payslip.input.type'].search([('code', '=', salary_rule_code)])
@@ -628,14 +635,14 @@ class HrPaySlip(models.Model):
             tmp_line = []
             hr_rule_category = self.env['hr.salary.rule.category'].search([])
             debit_rule_ids = hr_rule_category.filtered(lambda x: x.id in (
-            self.env.ref('dimabe_rrhh.custom_hr_salary_rule_category_taxable').id,
-            self.env.ref('dimabe_rrhh.custom_hr_salary_rule_category_not_taxable').id))
+                self.env.ref('dimabe_rrhh.custom_hr_salary_rule_category_taxable').id,
+                self.env.ref('dimabe_rrhh.custom_hr_salary_rule_category_not_taxable').id))
 
             credit_rule_ids = hr_rule_category.filtered(lambda x: x.id in (
-            self.env.ref('dimabe_rrhh.custom_hr_salary_rule_category_discount').id,
-            self.env.ref('dimabe_rrhh.custom_hr_salary_rule_category_other_discount').id,
-            self.env.ref('dimabe_rrhh.custom_hr_salary_rule_forecast').id,
-            (self.env.ref('dimabe_rrhh.custom_hr_salary_rule_health').id)))
+                self.env.ref('dimabe_rrhh.custom_hr_salary_rule_category_discount').id,
+                self.env.ref('dimabe_rrhh.custom_hr_salary_rule_category_other_discount').id,
+                self.env.ref('dimabe_rrhh.custom_hr_salary_rule_forecast').id,
+                (self.env.ref('dimabe_rrhh.custom_hr_salary_rule_health').id)))
 
             debit = 0
             credit = 0
@@ -652,13 +659,16 @@ class HrPaySlip(models.Model):
             exception_rules = []
             exception_rules.append('SALUD')
 
-            #validations
+            # validations
             if line.salary_rule_id.category_id.id in debit_rule_ids.ids and line.salary_rule_id.code not in exception_rules:
                 if not line.salary_rule_id.account_debit or not line.salary_rule_id.account_credit:
-                    raise models.ValidationError(f'No se puede confirmar la Nómina del Empleado {line.slip_id.employee_id.name}\nRegla Salarial {line.salary_rule_id.name} debe tener cuenta Deudora y Cuenta Acreedora')
-            if (line.salary_rule_id.category_id.id in credit_rule_ids.ids or line.code in exception_codes) and line.salary_rule_id.code not in exception_rules:
+                    raise models.ValidationError(
+                        f'No se puede confirmar la Nómina del Empleado {line.slip_id.employee_id.name}\nRegla Salarial {line.salary_rule_id.name} debe tener cuenta Deudora y Cuenta Acreedora')
+            if (
+                    line.salary_rule_id.category_id.id in credit_rule_ids.ids or line.code in exception_codes) and line.salary_rule_id.code not in exception_rules:
                 if not line.salary_rule_id.account_debit or not line.salary_rule_id.account_credit:
-                    raise models.ValidationError(f'No se puede confirmar la Nómina del Empleado {line.slip_id.employee_id.name}\nRegla Salarial {line.salary_rule_id.name} debe tener cuenta Deudora y Cuenta Acreedora')
+                    raise models.ValidationError(
+                        f'No se puede confirmar la Nómina del Empleado {line.slip_id.employee_id.name}\nRegla Salarial {line.salary_rule_id.name} debe tener cuenta Deudora y Cuenta Acreedora')
 
             debit_credit = False
             if line.salary_rule_id.account_debit and line.salary_rule_id.account_credit:
@@ -679,7 +689,7 @@ class HrPaySlip(models.Model):
                     'debit': debit,
                     'credit': credit,
                     'account_id': account_id,
-                    'employee_id':  line.slip_id.employee_id.id
+                    'employee_id': line.slip_id.employee_id.id
                 })
 
             else:
@@ -721,7 +731,8 @@ class HrPaySlip(models.Model):
                 without_full_payslip = False
                 if totim == 0:
                     for payslip in payslip_ids:
-                        payslip_full_worked = payslip.mapped('worked_days_line_ids').filtered(lambda x: x.number_of_days == 30)
+                        payslip_full_worked = payslip.mapped('worked_days_line_ids').filtered(
+                            lambda x: x.number_of_days == 30)
                         if not payslip_full_worked or len(payslip_full_worked) == 0:
                             if payslip.last_full_payslip > 0:
                                 totim = payslip.last_full_payslip
@@ -736,12 +747,12 @@ class HrPaySlip(models.Model):
                             break
 
                 if without_full_payslip:
-                    raise models.ValidationError(f'No existen registros de Nóminas para {self.employee_id.name} con 30 días trabajados\nFavor Ingresar el último total imponible en la pestaña Movimientos de Personal')
+                    raise models.ValidationError(
+                        f'No existen registros de Nóminas para {self.employee_id.name} con 30 días trabajados\nFavor Ingresar el último total imponible en la pestaña Movimientos de Personal')
 
         if totim > maximum:
             totim = maximum
         return ((totim / 30) * license_days * rate) / 100
-
 
     def can_collect_loan_discount(self):
         licenses_days = 0
@@ -757,8 +768,8 @@ class HrPaySlip(models.Model):
             else:
                 return True
         else:
-            raise models.ValidationError('Favor configurar el valor para Mínimo de días de Licencia para validar si se debe cobrar o no los prestamos y descuentos fijos.')
-
+            raise models.ValidationError(
+                'Favor configurar el valor para Mínimo de días de Licencia para validar si se debe cobrar o no los prestamos y descuentos fijos.')
 
     def update_loan_date(self):
         for item in self:
@@ -767,7 +778,7 @@ class HrPaySlip(models.Model):
             loan_ids = loan_ids.filtered(lambda a: item.date_from <= a.next_fee_date <= item.date_to)
 
             if loan_ids:
-                if len(loan_ids)>0 and len(item.loan_ids) == 0:
+                if len(loan_ids) > 0 and len(item.loan_ids) == 0:
                     for loan in loan_ids.mapped('fee_ids').filtered(lambda x: not x.paid):
                         loan.write({
                             'expiration_date': loan.expiration_date + relativedelta(months=1)
@@ -788,7 +799,7 @@ class HrPayslipEmployees(models.TransientModel):
 
     indicator_id = fields.Many2one('custom.indicators', 'Indicador', required=True)
 
-    #Ovewrite
+    # Ovewrite
     def compute_sheet(self):
         self.ensure_one()
         if not self.env.context.get('active_id'):
@@ -858,3 +869,5 @@ class HrPayslipEmployees(models.TransientModel):
             'views': [[False, 'form']],
             'res_id': payslip_run.id,
         }
+
+

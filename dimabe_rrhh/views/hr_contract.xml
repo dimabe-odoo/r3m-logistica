@@ -9,6 +9,7 @@
       <xpath expr="//field[@name='department_id']" position="before">
         <field name="type_id" required="1"/>
         <field name="is_commision_contract"/>
+        <field name="is_contract_work"/>
         <field name="type_code" invisible="1"/>
       </xpath>
       <xpath expr="//field[@name='structure_type_id']" position="after">
