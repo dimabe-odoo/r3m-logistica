@@ -386,6 +386,7 @@ class CustomSettlement(models.Model):
 
 class CustomSettlementLine(models.Model):
     _name = 'custom.settlement.line'
+    _description = 'Finiquito'
 
     settlement_id = fields.Many2one('custom.settlement')
 
