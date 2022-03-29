@@ -646,7 +646,6 @@
                                     <td style=""><![CDATA[&nbsp;]]></td>
                                 </tr>
                             </table>
-
                         </div>
                         <table style="width: 100%;">
                             <thead>
@@ -655,7 +654,7 @@
                                 </tr>
                             </thead>
                         </table>
-                        <div style="width: 100%;vertical-align: top;">
+                        <div style="width: 100%;" align="center">
                             <div style="width: 33.3%;min-height:230px;display: inline-block;">
                                 <table style="width:100%;border-spacing: 0;">
                                     <tr>
