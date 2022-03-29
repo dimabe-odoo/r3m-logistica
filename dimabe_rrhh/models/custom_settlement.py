@@ -30,7 +30,7 @@ class CustomSettlement(models.Model):
         required=True
     )
 
-    article_causal = fields.Char('Articulo', related='fired_id.article')
+    article_causal = fields.Char('Articulo')
 
     date_start = fields.Date('Fecha inicio contrato', related='contract_id.date_start')
 
