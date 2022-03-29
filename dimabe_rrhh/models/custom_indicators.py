@@ -44,8 +44,7 @@ class CustomIndicators(models.Model):
 
     ccaf_type_id = fields.Integer('custom.data.type',compute="_compute_ccaf_type")
 
-    mutuality_type_id = fields.Integer('custom.data.type', string="Tipo de Mutualidad",
-                                       compute="_compute_mutuality_type")
+    mutuality_type_id = fields.Integer('custom.data.type',compute="_compute_mutuality_type")
 
     company_id = fields.Many2one('res.company', string='Compañía', default=lambda self: self.env.company)
 
