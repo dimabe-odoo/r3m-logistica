@@ -663,7 +663,9 @@
                                 <table>
                                     <tr>
                                         <td>Institucion Previsional</td>
-                                        <td><span t-field="d.contract_id.afp_id.name"/></td>
+                                        <td>
+                                            <span t-field="d.contract_id.afp_id.name"/>
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
@@ -680,7 +682,9 @@
                                 <table>
                                     <tr>
                                         <td>Institucion de Salud</td>
-                                        <td><span t-field="d.contract_id.isapre_id.name"/></td>
+                                        <td>
+                                            <span t-field="d.contract_id.isapre_id.name"/>
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
@@ -720,7 +724,7 @@
                     <div class="oe_structure"/>
                     <div class="row">
                         <div class="col-4"
-                             style="min-height:100px;border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;">
+                             style="border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;">
                             <table>
                                 <tr>
                                     <td>
@@ -732,15 +736,54 @@
                                         <span t-field="res_company.vat"/>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <span t-field="res_company.l10n_cl_activity_description"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-4 justify-content-center"
+                             style="border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;border-right:solid 1px;">
+                            <table align="center">
+                                <tr>
+                                    <td>LIQUIDACION DE SUELDO</td>
+                                </tr>
                             </table>
                         </div>
                         <div class="col-4"
-                             style="min-height:100px;border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;border-right:solid 1px;">
-
+                             style="border-top:solid 1px;border-bottom:solid 1px;border-right:solid 1px;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <span t-esc="d.indicator_id.get_indicator_name()"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <![CDATA[&nbsp;]]>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        F.Inicio : <span t-field="d.contract_id.date_start"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"
+                             style="border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;">
+                            Ficha : <span t-field="d.contract_id.id"/>
+                        </div>
+                        <div class="col-4 justify-content-center"
+                             style="border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;border-right:solid 1px;">
+                            <span t-esc="d.employee_id.get_reverse_full_name()"/>
                         </div>
                         <div class="col-4"
-                             style="min-height:100px;border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;">
-
+                             style="border-top:solid 1px;border-bottom:solid 1px;border-right:solid 1px;">
+                            RUT: <span t-field="d.employee_id.identification_id"/>
                         </div>
                     </div>
                 </t>
@@ -772,6 +815,17 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">dimabe_rrhh.report_payslip_r3m</field>
         <field name="report_file">dimabe_rrhh.report_payslip_r3m</field>
+        <field name="binding_model_id" ref="dimabe_rrhh.model_hr_payslip"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="dimabe_rrhh.paper_format_letter_custom"/>
+    </record>
+    <record id="action_payslip_report_r3m_bootstrap" model="ir.actions.report">
+        <field name="name">Comprobante Bootstrap</field>
+        <field name="model">hr.payslip</field>
+        <field name="print_report_name">((object.name).replace('Recibo de Salario','Liq.'))</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">dimabe_rrhh.report_payslip_r3m_bootstrap</field>
+        <field name="report_file">dimabe_rrhh.report_payslip_r3m_bootstrap</field>
         <field name="binding_model_id" ref="dimabe_rrhh.model_hr_payslip"/>
         <field name="binding_type">report</field>
         <field name="paperformat_id" ref="dimabe_rrhh.paper_format_letter_custom"/>

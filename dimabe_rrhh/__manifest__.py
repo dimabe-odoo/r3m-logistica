@@ -69,7 +69,8 @@
         'views/custom_settlement.xml',
         'data/custom_data_fired_cause.xml',
         'views/custom_fired.xml',
-        'report/report_settlement.xml'
+        'report/report_settlement.xml',
+        'views/hr_payslip_input_type.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
