@@ -770,8 +770,8 @@
         <field name="model">hr.payslip</field>
         <field name="print_report_name">((object.name).replace('Recibo de Salario','Liq.'))</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">dimabe_rrhh.report_payslip_r3m_bootstrap</field>
-        <field name="report_file">dimabe_rrhh.report_payslip_r3m_bootstrap</field>
+        <field name="report_name">dimabe_rrhh.report_payslip_r3m</field>
+        <field name="report_file">dimabe_rrhh.report_payslip_r3m</field>
         <field name="binding_model_id" ref="dimabe_rrhh.model_hr_payslip"/>
         <field name="binding_type">report</field>
         <field name="paperformat_id" ref="dimabe_rrhh.paper_format_letter_custom"/>
