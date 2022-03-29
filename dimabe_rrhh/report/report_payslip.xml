@@ -655,7 +655,7 @@
                                 </tr>
                             </thead>
                         </table>
-                        <div style="width: 100%;vertical-align: top;">
+                        <div style="width: 100%;vertical-align: top;margin-top:0;">
                             <div style="width: 33.3%;min-height:230px;display: inline-block;">
                                 <table style="width:100%;border-spacing: 0;">
                                     <tr>
@@ -663,7 +663,7 @@
                                             Institucion Previsional
                                         </td>
                                         <td style="text-align: left;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            <span t-field="d.contract_id.afp_id" />
+                                            <span t-field="d.contract_id.afp_id"/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -858,6 +858,28 @@
                                 </table>
                             </div>
                         </div>
+                        <table style="width: 100%;min-height: 250px;">
+                            <tr>
+                                <th style="width:59%;">Certifico que he recido de <span t-field="res_company.name"/>
+                                    a mi entera satificacción la remuneración del presente mes y no tengo cobro alguno
+                                    que hacer, por ningun de los conceptos comprendidos en ella
+                                </th>
+                                <td style="width:40%;text-align: center;border: solid 1px;">
+                                    <table style="width:100%;text-align: center;vertical-align: middle;">
+                                        <tr>
+                                            <td style="min-height: 150px;border-bottom: solid 1px;">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Acuse de Recibo
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </t>
             </div>
@@ -878,9 +900,9 @@
         <field name="header_spacing">0</field>
         <field name="dpi">90</field>
     </record>
-<!--    <report id="action_payslip_report" string="Nómina" model="hr.payslip" report_type="qweb-pdf"-->
-<!--            name="dimabe_rrhh.report_payslip" menu="True" paperformat="paper_format_letter_custom"-->
-<!--            print_report_name="((object.name).replace('Recibo de Salario','Liq.'))"/>-->
+    <!--    <report id="action_payslip_report" string="Nómina" model="hr.payslip" report_type="qweb-pdf"-->
+    <!--            name="dimabe_rrhh.report_payslip" menu="True" paperformat="paper_format_letter_custom"-->
+    <!--            print_report_name="((object.name).replace('Recibo de Salario','Liq.'))"/>-->
     <record id="action_payslip_report_r3m" model="ir.actions.report">
         <field name="name">Comprobante</field>
         <field name="model">hr.payslip</field>
