@@ -878,9 +878,9 @@
         <field name="header_spacing">0</field>
         <field name="dpi">90</field>
     </record>
-    <report id="action_payslip_report" string="Nómina" model="hr.payslip" report_type="qweb-pdf"
-            name="dimabe_rrhh.report_payslip" menu="True" paperformat="paper_format_letter_custom"
-            print_report_name="((object.name).replace('Recibo de Salario','Liq.'))"/>
+<!--    <report id="action_payslip_report" string="Nómina" model="hr.payslip" report_type="qweb-pdf"-->
+<!--            name="dimabe_rrhh.report_payslip" menu="True" paperformat="paper_format_letter_custom"-->
+<!--            print_report_name="((object.name).replace('Recibo de Salario','Liq.'))"/>-->
     <record id="action_payslip_report_r3m" model="ir.actions.report">
         <field name="name">Comprobante</field>
         <field name="model">hr.payslip</field>

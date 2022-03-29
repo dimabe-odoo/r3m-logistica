@@ -9,6 +9,7 @@ from ..utils.roundformat_clp import round_clp
 class CustomSettlement(models.Model):
     _name = 'custom.settlement'
     _rec_name = 'employee_id'
+    _inherit = ['mail.thread']
     _description = "Finiquito"
 
     employee_id = fields.Many2one(

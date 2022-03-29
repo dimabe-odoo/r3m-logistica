@@ -44,14 +44,14 @@ class HrContract(models.Model):
 
     have_life_insurance_ccaf = fields.Boolean('Tiene Seguro de Vida CCAF')
     life_insurance_ccaf = fields.Float('Seguro de Vida CCAF')
-    life_insurance_ccaf_currency = fields.Selection([('uf', 'UF'), ('clp', 'Pesos')], string='Tipo de Moneda',
+    life_insurance_ccaf_currency = fields.Selection([('uf', 'UF'), ('clp', 'Pesos')], string='Tipo de Moneda (Seguro de Vida)',
                                                     default="uf")
 
-    currency_supplementary_insurance_id = fields.Many2one('res.currency', 'Moneda', domain=[('id', 'in', (45, 171))])
+    currency_supplementary_insurance_id = fields.Many2one('res.currency', 'Moneda (Seguro Complementario)', domain=[('id', 'in', (45, 171))])
 
     supplementary_insurance_agreed_quotes_uf = fields.Float('Cotizacion Pactada')
 
-    currency_isapre_id = fields.Many2one('res.currency', 'Moneda', domain=[('id', 'in', (45, 171))])
+    currency_isapre_id = fields.Many2one('res.currency', 'Moneda (Isapre)', domain=[('id', 'in', (45, 171))])
 
     is_pensionary = fields.Boolean('Pensionado')
 
@@ -84,7 +84,7 @@ class HrContract(models.Model):
 
     apv_amount = fields.Float('Monto APV')
 
-    apv_currency = fields.Selection([('uf', 'UF'), ('clp', 'Pesos')], string='Tipo de Moneda', default="uf")
+    apv_currency = fields.Selection([('uf', 'UF'), ('clp', 'Pesos')], string='Tipo de Moneda (APV)', default="uf")
 
     apv_payment_term = fields.Selection([('1', 'Directa'), ('2', 'Indirecta')], string='Forma de Pago', default="1")
 

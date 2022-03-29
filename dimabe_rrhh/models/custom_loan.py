@@ -38,7 +38,7 @@ class CustomLoan(models.Model):
 
     fee_ids = fields.One2many('custom.fee', 'loan_id')
 
-    next_fee_id = fields.Many2one('custom.fee', compute='compute_next_fee')
+    next_fee_id = fields.Many2one('custom.fee',string="Proxima Cuota", compute='compute_next_fee')
 
     next_fee_date = fields.Date('Proxima Cuota', related='next_fee_id.expiration_date')
 
@@ -48,7 +48,7 @@ class CustomLoan(models.Model):
 
     state = fields.Selection([('draft', 'Borrador'), ('in_process', 'En Proceso'), ('done', 'Finalizado')],
                              default='draft', tracking=True)
-    next_fee_ids = fields.Many2many('custom.fee', compute='compute_next_fee')
+    next_fee_ids = fields.Many2many('custom.fee',string="Cuotas", compute='compute_next_fee')
 
     def compute_fee_remaining(self):
         for item in self:
