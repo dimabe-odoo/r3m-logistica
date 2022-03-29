@@ -790,7 +790,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-3">
                             <table>
                                 <tr>
                                     <td>C.Costo</td>
@@ -810,19 +810,12 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-2">
-                            <table>
-                                <tr>
-                                    <td>Cargo</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span t-field="d.contract_id.job_id"/>
-                                    </td>
-                                </tr>
-                            </table>
+                        <div class="col-3">
+                            Cargo
+                            <br/>
+                            <span t-field="d.contract_id.job_id"/>
                         </div>
-                        <div class="col-2">
+                        <div class="col-1">
                             <table>
                                 <tr>
                                     <td>Ubicacion</td>
@@ -846,7 +839,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-3">
+                        <div class="col-1">
                             <table>
                                 <tr>
                                     <td>Renta Base</td>
