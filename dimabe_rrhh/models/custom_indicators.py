@@ -42,7 +42,7 @@ class CustomIndicators(models.Model):
 
     institute_occupational_safety = fields.Float('ISL', help="Instituto de Seguridad Laboral")
 
-    ccaf_type_id = fields.Integer('custom.data.type', string="Tipo de CCAF", compute="_compute_ccaf_type")
+    ccaf_type_id = fields.Integer('custom.data.type',compute="_compute_ccaf_type")
 
     mutuality_type_id = fields.Integer('custom.data.type', string="Tipo de Mutualidad",
                                        compute="_compute_mutuality_type")
