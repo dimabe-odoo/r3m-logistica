@@ -30,7 +30,7 @@ class CustomSettlement(models.Model):
         required=True
     )
 
-    article_causal = fields.Selection('Articulo', related='fired_id.article')
+    article_causal = fields.Char('Articulo', related='fired_id.article')
 
     date_start = fields.Date('Fecha inicio contrato', related='contract_id.date_start')
 
@@ -54,7 +54,7 @@ class CustomSettlement(models.Model):
     )
 
     wage = fields.Monetary('Sueldo Base', related='contract_id.wage', currency_field='currency_id',
-                           digits='Paypoll')
+                           digits='Payroll')
 
     reward_selection = fields.Selection([
         ('Yes', 'Si'),
