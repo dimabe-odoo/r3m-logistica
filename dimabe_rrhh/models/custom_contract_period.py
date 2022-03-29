@@ -3,6 +3,7 @@ from odoo import models, fields, api
 class CustomContractPeriod(models.Model):
     _name = 'custom.contract_period'
     _rec_name = 'display_name'
+    _description = "Periodo del Contrato"
     _order = 'date_start desc'
 
     employee_id = fields.Many2one('hr.employee', 'Empleado')

@@ -3,6 +3,7 @@ from odoo import models, fields
 
 class CustomBenefitsRRHH(models.Model):
     _name = 'custom.benefits.rrhh'
+    _description = 'Beneficios RRHH'
 
     code = fields.Char(string='Codigo', required=True)
 

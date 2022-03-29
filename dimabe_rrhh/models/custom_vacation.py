@@ -8,6 +8,7 @@ from dateutil.relativedelta import relativedelta
 class CustomVacation(models.Model):
     _name = 'custom.vacation'
     _rec_name = 'employee_id'
+    _description = "Vacaciones"
 
     employee_id = fields.Many2one('hr.employee', 'Empleado', required=True)
 

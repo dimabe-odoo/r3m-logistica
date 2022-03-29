@@ -18,9 +18,9 @@ class CustomRegion(models.Model):
     country_id = fields.Many2one('res.country',
                                  default=lambda self: self.env['res.country'].search([('code', '=', 'CL')]))
 
-    geo_latitude = fields.Float('Latitud', digits=dp.get_precision('Geo Location'))
+    geo_latitude = fields.Float('Latitud', digits='Geo Location')
 
-    geo_longitude = fields.Float('Longitud', digits=dp.get_precision('Geo Location'))
+    geo_longitude = fields.Float('Longitud', digits='Geo Location')
 
     def get_regions(self):
         url = 'https://apis.digital.gob.cl/dpa/regiones'

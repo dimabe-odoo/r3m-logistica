@@ -4,6 +4,7 @@ from datetime import datetime
 
 class CustomPersonalMovements(models.Model):
     _name = 'custom.personal.movements'
+    _description = "Movimiento de Personal"
 
     personal_movements = fields.Selection([('0', 'Sin Movimiento en el Mes'),
                                            ('1', 'Contratación a plazo indefinido'),

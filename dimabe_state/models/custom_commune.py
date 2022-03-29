@@ -17,9 +17,9 @@ class CustomCommune(models.Model):
 
     region_id = fields.Many2one('custom.region', string='Region')
 
-    geo_latitude = fields.Float('Latitud',digits=dp.get_precision('Geo Location'))
+    geo_latitude = fields.Float('Latitud',digits='Geo Location')
 
-    geo_longitude = fields.Float('Longitud',digits=dp.get_precision('Geo Location'))
+    geo_longitude = fields.Float('Longitud',digits='Geo Location')
 
     def get_communes(self):
         url = 'https://apis.digital.gob.cl/dpa/comunas'

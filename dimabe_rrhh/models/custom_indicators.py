@@ -9,6 +9,7 @@ from ..utils.taxe_unique import getTaxeUniques
 class CustomIndicators(models.Model):
     _name = 'custom.indicators'
     _order = 'create_date desc'
+    _description = "Indicadores Previsionales"
 
     name = fields.Char('Nombre')
 
@@ -21,7 +22,7 @@ class CustomIndicators(models.Model):
          ('jul', 'Julio'), ('aug', 'Agosto'), ('sep', 'Septiembre'), ('oct', 'Octubre'), ('nov', 'Noviembre'),
          ('dec', 'Diciembre')], string='Mes')
 
-    year = fields.Float('Año', default=datetime.now().strftime('%Y'), digits=dp.get_precision('Year'))
+    year = fields.Float('Año', default=datetime.now().strftime('%Y'), digits='Year')
 
     ccaf_id = fields.Many2one('custom.data', 'Caja de Compensación')
 

@@ -2,6 +2,7 @@ from odoo import models, fields, api
 
 class CustomUniqueTax(models.Model):
     _name = "custom.unique.tax"
+    _description = "Impuesto Unico"
 
     salary_from = fields.Float('Desde')
 

@@ -4,6 +4,7 @@ from datetime import date
 
 class ConfirmDoneLoan(models.TransientModel):
     _name = 'confirm.done.loan'
+    _description = 'Confirmar Prestamo'
 
     loan_id = fields.Many2one('custom.loan')
 

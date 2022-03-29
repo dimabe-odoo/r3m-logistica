@@ -9,6 +9,7 @@ from ..utils.roundformat_clp import round_clp
 class CustomSettlement(models.Model):
     _name = 'custom.settlement'
     _rec_name = 'employee_id'
+    _description = "Finiquito"
 
     employee_id = fields.Many2one(
         'hr.employee',
@@ -51,8 +52,8 @@ class CustomSettlement(models.Model):
         string='Moneda',
     )
 
-    wage = fields.Monetary('Sueldo Base', related='contract_id.wage', current_field='currency_id',
-                           digits=dp.get_precision('Paypoll'))
+    wage = fields.Monetary('Sueldo Base', related='contract_id.wage', currency_field='currency_id',
+                           digits='Paypoll')
 
     reward_selection = fields.Selection([
         ('Yes', 'Si'),
@@ -60,22 +61,22 @@ class CustomSettlement(models.Model):
         ('Edit', 'Editar')
     ], string='Gratificacion', default='Yes')
 
-    collation_amount = fields.Float('Colación', digits=dp.get_precision('Payroll'))
+    collation_amount = fields.Float('Colación', digits='Payroll')
 
-    mobilization_amount = fields.Float('Movilización', digits=dp.get_precision('Payroll'))
+    mobilization_amount = fields.Float('Movilización', digits='Payroll')
 
-    pending_remuneration_payment = fields.Monetary('Remuneraciones Pendientes', digits=dp.get_precision('Payroll'))
+    pending_remuneration_payment = fields.Monetary('Remuneraciones Pendientes', digits='Payroll')
 
     compensation_warning = fields.Monetary('Indemnización Aviso Previo', compute='compute_warning',
-                                           digits=dp.get_precision('Payroll'))
+                                           digits='Payroll')
 
     compensation_years = fields.Monetary('Indemnización Años de Servicio', compute='compute_years',
-                                         digits=dp.get_precision('Payroll'))
+                                         digits='Payroll')
 
     compensation_vacations = fields.Monetary('Indemnización Vacaciones Proporcionales', compute='compute_vacations',
-                                             digits=dp.get_precision('Payroll'))
+                                             digits='Payroll')
 
-    settlement = fields.Monetary('Finiquito', digits=dp.get_precision('Payroll'))
+    settlement = fields.Monetary('Finiquito', digits='Payroll')
 
     years = fields.Integer('Años', compute='compute_years')
 
@@ -88,7 +89,7 @@ class CustomSettlement(models.Model):
     compensation_vacations_days = fields.Float('Total Vacaciones Proporcionales', compute="compute_vacations")
 
     state = fields.Selection([('draft', 'Borrador'), ('done', 'Realizado')],
-                             default='draft', track_visibility='onchange')
+                             default='draft', tracking=True)
 
     line_ids = fields.One2many('custom.settlement.line', 'settlement_id')
 
@@ -392,7 +393,7 @@ class CustomSettlementLine(models.Model):
 
     category_id = fields.Char('Categoría', related="rule_id.category_id.name")
 
-    amount = fields.Monetary('Monto', digits=dp.get_precision('Payroll'))
+    amount = fields.Monetary('Monto', digits='Payroll')
 
     loan_id = fields.Many2one('custom.loan')
 

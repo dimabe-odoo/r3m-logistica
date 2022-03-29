@@ -2,6 +2,7 @@ from odoo import fields, models, api
 
 class CustomConfirmPayslip(models.TransientModel):
     _name = 'custom.confirm_payslip'
+    _description = "Confirmar Nomina por Indicador"
 
     indicator_id = fields.Many2one('custom.indicators', string="Indicador")
 
