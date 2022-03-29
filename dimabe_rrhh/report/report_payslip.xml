@@ -451,7 +451,7 @@
         </t>
     </template>
     <template id="report_payslip_r3m">
-        <t t-call="web.html_container">
+        <t t-call="web.basic_layout">
             <div class="page">
                 <t t-foreach="docs" t-as="d">
                     <div style="width: 100%;">
