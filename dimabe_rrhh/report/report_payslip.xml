@@ -655,7 +655,7 @@
                                 </tr>
                             </thead>
                         </table>
-                        <div style="width: 100%;">
+                        <div style="width: 100%;vertical-align: top;">
                             <div style="width: 33.3%;min-height:230px;display: inline-block;">
                                 <table style="width:100%;border-spacing: 0;">
                                     <tr>
