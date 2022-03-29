@@ -54,7 +54,7 @@ class CustomSettlement(models.Model):
     )
 
     wage = fields.Monetary('Sueldo Base', related='contract_id.wage', currency_field='currency_id',
-                           digits='Payroll')
+                           )
 
     reward_selection = fields.Selection([
         ('Yes', 'Si'),
@@ -62,22 +62,22 @@ class CustomSettlement(models.Model):
         ('Edit', 'Editar')
     ], string='Gratificacion', default='Yes')
 
-    collation_amount = fields.Float('Colación', digits='Payroll')
+    collation_amount = fields.Float('Colación', )
 
-    mobilization_amount = fields.Float('Movilización', digits='Payroll')
+    mobilization_amount = fields.Float('Movilización', )
 
-    pending_remuneration_payment = fields.Monetary('Remuneraciones Pendientes', digits='Payroll')
+    pending_remuneration_payment = fields.Monetary('Remuneraciones Pendientes', )
 
     compensation_warning = fields.Monetary('Indemnización Aviso Previo', compute='compute_warning',
-                                           digits='Payroll')
+                                           )
 
     compensation_years = fields.Monetary('Indemnización Años de Servicio', compute='compute_years',
-                                         digits='Payroll')
+                                         )
 
     compensation_vacations = fields.Monetary('Indemnización Vacaciones Proporcionales', compute='compute_vacations',
-                                             digits='Payroll')
+                                             )
 
-    settlement = fields.Monetary('Finiquito', digits='Payroll')
+    settlement = fields.Monetary('Finiquito', )
 
     years = fields.Integer('Años', compute='compute_years')
 
@@ -395,7 +395,7 @@ class CustomSettlementLine(models.Model):
 
     category_id = fields.Char('Categoría', related="rule_id.category_id.name")
 
-    amount = fields.Monetary('Monto', digits='Payroll')
+    amount = fields.Monetary('Monto', )
 
     loan_id = fields.Many2one('custom.loan')
 

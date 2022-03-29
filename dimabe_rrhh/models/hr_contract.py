@@ -25,7 +25,7 @@ class HrContract(models.Model):
 
     disability_charge = fields.Integer('Carga Invalidez')
 
-    isapre_agreed_quotes_uf = fields.Float('Cotizacion Pactada', digits=(10, 3))
+    isapre_agreed_quotes_uf = fields.Float('Cotizacion Pactada Isapre', digits=(10, 3))
 
     fun_number = fields.Integer('Numero FUN')
 
@@ -49,7 +49,7 @@ class HrContract(models.Model):
 
     currency_supplementary_insurance_id = fields.Many2one('res.currency', 'Moneda (Seguro Complementario)', domain=[('id', 'in', (45, 171))])
 
-    supplementary_insurance_agreed_quotes_uf = fields.Float('Cotizacion Pactada')
+    supplementary_insurance_agreed_quotes_uf = fields.Float('Cotizacion Pactada Seguro Complementario')
 
     currency_isapre_id = fields.Many2one('res.currency', 'Moneda (Isapre)', domain=[('id', 'in', (45, 171))])
 

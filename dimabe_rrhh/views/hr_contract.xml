@@ -116,7 +116,7 @@
                         <field name="is_fonasa"/>
                         <field name="isapre_id" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
                         <field name="currency_isapre_id" string="Moneda" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
-                        <field name="isapre_agreed_quotes_uf" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
+                        <field name="isapre_agreed_quotes_uf" string="Cotizacion Pactada" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
                         <field name="fun_number" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
                         <field name="own_account_isapre" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
                     </group>
@@ -127,7 +127,7 @@
                         <field name="supplementary_insurance_type_id" invisible="1"/>
                         <field name="supplementary_insurance_id"/>
                         <field name="currency_supplementary_insurance_id" string="Moneda"/>
-                        <field name="supplementary_insurance_agreed_quotes_uf"/>
+                        <field name="supplementary_insurance_agreed_quotes_uf" string="Cotizacion Pactada"/>
                     </group>
                 </page>
             </xpath>
