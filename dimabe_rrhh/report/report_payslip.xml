@@ -488,7 +488,8 @@
                         <table style="width:100%;border-bottom: solid 1px;border-right: solid 1px;border-left: solid 1px;border-spacing: 0;">
                             <tr>
                                 <td style="text-align: left;border-right: solid 1px;padding-left: 10px;">
-                                    Ficha: <span t-esc="d.contract_id.id"/>
+                                    Ficha:
+                                    <span t-esc="d.contract_id.id"/>
                                 </td>
                                 <td style="text-align: center;">
                                     <span t-esc="d.employee_id.get_reverse_full_name()"/>
@@ -522,7 +523,9 @@
                                 <td style="text-align: left;padding-left:10px;">
                                     <span t-field="d.contract_id.job_id"/>
                                 </td>
-                                <td style="text-align: left;padding-left:10px;"><span t-field="d.employee_id.work_location"/></td>
+                                <td style="text-align: left;padding-left:10px;">
+                                    <span t-field="d.employee_id.work_location"/>
+                                </td>
                                 <td style="text-align: left;padding-left:10px;">Spot</td>
                                 <td style="text-align: right;padding-right:10px;">
                                     <span t-field="d.contract_id.wage"/>
@@ -654,212 +657,38 @@
                                 </tr>
                             </thead>
                         </table>
-                        <div style="width: 100%;" align="center">
-                            <div style="width: 33.3%;min-height:230px;display: inline-block;">
-                                <table style="width:100%;border-spacing: 0;">
+                        <div class="row">
+                            <div class="col-4"
+                                 style="min-height:100px;border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;">
+                                <table>
                                     <tr>
-                                        <td style="text-align: right;border-top:solid 1px;border-left:solid 1px;border-bottom: solid 1px;border-right: solid 1px;">
-                                            Institucion Previsional
-                                        </td>
-                                        <td style="text-align: left;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            <span t-field="d.contract_id.afp_id"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: left;border-right: solid 1px;border-left:solid 1px;">
-                                            Cotizacion Obligatoria
-                                        </td>
-                                        <td style="text-align: right;border-right: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'PREV').total)"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: left;border-right: solid 1px;border-left:solid 1px;">
-                                            Cotización Volutario
-                                        </td>
-                                        <td style="text-align: right;border-right: solid 1px;">
-                                            0
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: left;border-right: solid 1px;border-left:solid 1px;">
-                                            Ahorro
-                                        </td>
-                                        <td style="text-align: right;border-right: solid 1px;">
-                                            0
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-left:solid 1px;border-bottom: solid 1px;">
-                                            Aporte SIS Empleador
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'SIS').total)"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-left:solid 1px;border-bottom: solid 1px;">
-                                            Base Imponible
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-bottom: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'TOTIM').total)"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-left:solid 1px;">
-                                            <![CDATA[&nbsp;]]>
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;">
-                                            <![CDATA[&nbsp;]]>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-left:solid 1px;border-bottom: solid 1px;">
-                                            Base Tributable
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'TRIBU').total)"/>
-                                        </td>
+                                        <td>Institucion Previsional</td>
+                                        <td><span t-field="d.contract_id.afp_id.name"/></td>
                                     </tr>
                                 </table>
                             </div>
-                            <div style="width: 33.3%;min-height:230px;display: inline-block;">
-                                <table style="border-spacing: 0;width: 100%;">
+                            <div class="col-4"
+                                 style="min-height:100px;border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;border-right:solid 1px;">
+                                <table>
                                     <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-left:solid 1px;"
-                                            colspan="2">Seguro de Cesantia
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-left:solid 1px;">
-                                            Ap.Empleado
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;">
-                                            0
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-left:solid 1px;">
-                                            Fdo.Individual
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'SECEEMP').total)"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-left:solid 1px;">
-                                            Fdo.Solidario
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-bottom: solid 1px;">
-                                            0
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;border-left:solid 1px;">
-                                            Tot. Seguro
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-bottom: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'SECEEMP').total)"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-left:solid 1px;">
-                                            <![CDATA[&nbsp;]]>
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;">
-                                            <![CDATA[&nbsp;]]>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-left:solid 1px;">
-                                            <![CDATA[&nbsp;]]>
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-bottom: solid 1px;">
-                                            <![CDATA[&nbsp;]]>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-left:solid 1px;border-bottom: solid 1px;">
-                                            Base Imponible Seguro Cesantia
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-bottom: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'TRIBU').total)"/>
-                                        </td>
+                                        <td>Seguro de Cesantia</td>
                                     </tr>
                                 </table>
                             </div>
-                            <div style="width: 31%;min-height: 230px;display: inline-block;">
-                                <table style="border-spacing: 0;width: 100%;">
+                            <div class="col-4"
+                                 style="min-height:100px;border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;">
+                                <table>
                                     <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;border-left:solid 1px;">
-                                            Institucion de Salud
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            <span t-field="d.contract_id.isapre_id"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;border-left:solid 1px;">
-                                            Cotizacion Obligatoria
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'ISAP').total)"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;border-left:solid 1px;">
-                                            Ley 18.566
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            0
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;border-left: solid 1px;">
-                                            Cotizacion Voluntaria
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'ADISA').total)"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;border-left: solid 1px;">
-                                            Cotizacion GES
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            0
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;border-left: solid 1px;">
-                                            Total Cotizacion de Salud
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            119.544
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;border-left:solid 1px;">
-                                            Plan Pactado + GES
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            119.544
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;border-left:solid 1px;">
-                                            Pagado en Exceso
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            0
-                                        </td>
+                                        <td>Institucion de Salud</td>
+                                        <td><span t-field="d.contract_id.isapre_id.name"/></td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
                         <table style="width: 100%;min-height: 250px;">
                             <tr>
-                                <th style="width:59%;">Certifico que he recido de <span t-field="res_company.name"/>
+                                <th style="width:59%;">Certifico que he recido de
+                                    <span t-field="res_company.name"/>
                                     a mi entera satificacción la remuneración del presente mes y no tengo cobro alguno
                                     que hacer, por ningun de los conceptos comprendidos en ella
                                 </th>
@@ -879,6 +708,40 @@
                                 </td>
                             </tr>
                         </table>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+    <template id="report_payslip_r3m_bootstrap">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="d">
+                    <div class="oe_structure"/>
+                    <div class="row">
+                        <div class="col-4"
+                             style="min-height:100px;border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <span t-field="res_company.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span t-field="res_company.vat"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-4"
+                             style="min-height:100px;border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;border-right:solid 1px;">
+
+                        </div>
+                        <div class="col-4"
+                             style="min-height:100px;border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;">
+
+                        </div>
                     </div>
                 </t>
             </div>
@@ -907,8 +770,8 @@
         <field name="model">hr.payslip</field>
         <field name="print_report_name">((object.name).replace('Recibo de Salario','Liq.'))</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">dimabe_rrhh.report_payslip_r3m</field>
-        <field name="report_file">dimabe_rrhh.report_payslip_r3m</field>
+        <field name="report_name">dimabe_rrhh.report_payslip_r3m_bootstrap</field>
+        <field name="report_file">dimabe_rrhh.report_payslip_r3m_bootstrap</field>
         <field name="binding_model_id" ref="dimabe_rrhh.model_hr_payslip"/>
         <field name="binding_type">report</field>
         <field name="paperformat_id" ref="dimabe_rrhh.paper_format_letter_custom"/>
