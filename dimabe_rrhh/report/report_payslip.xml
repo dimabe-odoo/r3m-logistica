@@ -725,7 +725,7 @@
                     <div class="row">
                         <div class="col-4"
                              style="border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;">
-                            <table>
+                            <table class="table table-sm">
                                 <tr>
                                     <td>
                                         <span t-field="res_company.name"/>
@@ -745,7 +745,7 @@
                         </div>
                         <div class="col-4 justify-content-center"
                              style="border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;border-right:solid 1px;">
-                            <table align="center">
+                            <table class="table table-sm"  align="center">
                                 <tr>
                                     <td>LIQUIDACION DE SUELDO</td>
                                 </tr>
@@ -753,7 +753,7 @@
                         </div>
                         <div class="col-4"
                              style="border-top:solid 1px;border-bottom:solid 1px;border-right:solid 1px;">
-                            <table>
+                            <table class="table table-sm">
                                 <tr>
                                     <td>
                                         <span t-esc="d.indicator_id.get_indicator_name()"/>
