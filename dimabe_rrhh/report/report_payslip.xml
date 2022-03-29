@@ -725,7 +725,7 @@
                     <div class="row">
                         <div class="col-4"
                              style="border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;">
-                            <table class="table table-sm">
+                            <table>
                                 <tr>
                                     <td>
                                         <span t-field="res_company.name"/>
@@ -745,7 +745,7 @@
                         </div>
                         <div class="col-4 justify-content-center"
                              style="border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;border-right:solid 1px;">
-                            <table class="table table-sm"  align="center">
+                            <table align="center">
                                 <tr>
                                     <td>LIQUIDACION DE SUELDO</td>
                                 </tr>
@@ -753,7 +753,7 @@
                         </div>
                         <div class="col-4"
                              style="border-top:solid 1px;border-bottom:solid 1px;border-right:solid 1px;">
-                            <table class="table table-sm">
+                            <table>
                                 <tr>
                                     <td>
                                         <span t-esc="d.indicator_id.get_indicator_name()"/>
@@ -766,7 +766,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        F.Inicio : <span t-field="d.contract_id.date_start"/>
+                                        F.Inicio :
+                                        <span t-field="d.contract_id.date_start"/>
                                     </td>
                                 </tr>
                             </table>
@@ -775,7 +776,8 @@
                     <div class="row">
                         <div class="col-4"
                              style="border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;">
-                            Ficha : <span t-field="d.contract_id.id"/>
+                            Ficha :
+                            <span t-field="d.contract_id.id"/>
                         </div>
                         <div class="col-4 justify-content-center"
                              style="border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;border-right:solid 1px;">
@@ -783,7 +785,78 @@
                         </div>
                         <div class="col-4"
                              style="border-top:solid 1px;border-bottom:solid 1px;border-right:solid 1px;">
-                            RUT: <span t-field="d.employee_id.identification_id"/>
+                            RUT:
+                            <span t-field="d.employee_id.identification_id"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <table>
+                                <tr>
+                                    <td>C.Costo</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <t t-if="res_company.analitic_account == '1' and d.account_analytic_id.name">
+                                            <span t-esc="d.account_analytic_id.name.capitalize()"/>
+                                        </t>
+                                        <t t-if="res_company.analitic_account == '2' and d.contract_id.analytic_account_id.name">
+                                            <span t-esc="d.contract_id.analytic_account_id.name.capitalize()"/>
+                                        </t>
+                                        <t t-if="res_company.analitic_account == '3' and d.contract_id.department_id.analytic_account_id.name">
+                                            <span t-esc="d.contract_id.department_id.analytic_account_id.name.capitalize()"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-2">
+                            <table>
+                                <tr>
+                                    <td>Cargo</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span t-field="d.contract_id.job_id"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-2">
+                            <table>
+                                <tr>
+                                    <td>Ubicacion</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span t-field="d.employee_id.work_location"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-2">
+                            <table>
+                                <tr>
+                                    <td>Area</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span t-field="d.contract_id.department_id"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-3">
+                            <table>
+                                <tr>
+                                    <td>Renta Base</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span t-field="d.contract_id.wage"/>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </t>
