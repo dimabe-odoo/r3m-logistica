@@ -455,69 +455,40 @@
             <div class="page">
                 <t t-foreach="docs" t-as="d">
                     <div class="oe_structure"/>
-                    <div class="row border border-secondary">
+                    <div class="row border border-dark">
                         <div class="col-4">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <span t-field="res_company.name"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span t-field="res_company.vat"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span t-field="res_company.l10n_cl_activity_description"/>
-                                    </td>
-                                </tr>
-                            </table>
+                            <span t-esc="res_company.name"/>
+                            <br/>
+                            <span t-esc="res_company.vat"/>
+                            <br/>
+                            <span t-esc="res_company.l10n_cl_activity_description"/>
+                        </div>
+                        <div class="col-4 align-self-end">
+                            LIQUIDACION DE SUELDOS
                         </div>
                         <div class="col-4">
-                            <table>
-                                <tr>
-                                    <td>LIQUIDACION DE SUELDO</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="col-4">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <span t-esc="d.indicator_id.get_indicator_name()"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <![CDATA[&nbsp;]]>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        F.Inicio :
-                                        <span t-field="d.contract_id.date_start"/>
-                                    </td>
-                                </tr>
-                            </table>
+                            <span t-esc="d.indicator_id.get_indicator_name()"/>
+                            <br/>
+                            <br/>
+                            F.Inicio :
+                            <span t-field="d.contract_id.date_start"/>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-4 border border-secondary">
+                    <div class="row border border-dark border-top-0">
+                        <div class="col-4 border border-dark border-top-0 border-bottom-0 border-left-0">
                             Ficha :
                             <span t-field="d.contract_id.id"/>
                         </div>
-                        <div class="col-4 border border-secondary">
+                        <div class="col-4">
                             <span t-esc="d.employee_id.get_reverse_full_name()"/>
                         </div>
-                        <div class="col-4 border border-secondary">
-                            RUT:
+                        <div class="col-4 border border-dark border-top-0 border-bottom-0 border-right-0">
+                            RUT :
                             <span t-field="d.employee_id.identification_id"/>
                         </div>
                     </div>
-                    <div class="row border border-secondary">
-                        <div class="col-3">
+                    <div class="row border border-dark border-top-0">
+                        <div class="col-2">
                             C.Costo
                             <br/>
                             <t t-if="res_company.analitic_account == '1' and d.account_analytic_id.name">
@@ -530,7 +501,7 @@
                                 <span t-esc="d.contract_id.department_id.analytic_account_id.name.capitalize()"/>
                             </t>
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             Cargo
                             <br/>
                             <span t-field="d.contract_id.job_id"/>
@@ -543,223 +514,73 @@
                         <div class="col-2">
                             Area
                             <br/>
+                            <span t-field="d.contract_id.department_id"/>
                         </div>
-                        <div class="col-2">
+                        <div class="col-4 text-right">
                             Renta Base
                             <br/>
-                            <span t-field="d.contract_id.wage"/>
+                            <span t-esc="d.round_clp(d.contract_id.wage)" />
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
-                            <table class="table table-sm table-borderless">
-                                <tr>
-                                    <td  class="border border-secondary" colspan="3" style="text-align: center;">HABERES</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-secondary" >Concepto</td>
-                                    <td class="border border-secondary" >Cantidad</td>
-                                    <td class="border border-secondary" >Valor</td>
-                                </tr>
-                            </table>
+                        <div class="col-6 text-center border border-dark  border-top-0">
+                            Haberes
                         </div>
-                        <div class="col-6">
-                            <table class="table table-sm table-borderless">
-                                <tr>
-                                    <td class="border border-secondary" colspan="3" style="text-align: center;">HABERES</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-secondary">Concepto</td>
-                                    <td class="border border-secondary">Cantidad</td>
-                                    <td class="border border-secondary">Valor</td>
-                                </tr>
-                            </table>
+                        <div class="col-6 text-center border border border-dark  border-top-0 border-left-0">
+                            Descuentos
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
-                            <table style="width: 100%;border-spacing: 0;border: solid 1px;">
-                                <tr>
-                                    <td style="border-right: solid 1px;">F.PAGO:
-                                        <span t-esc="d.payment_term_id.name"/>
-                                    </td>
-                                    <td style="border-right: solid 1px;"><![CDATA[&nbsp;]]></td>
-                                    <td style=""><![CDATA[&nbsp;]]></td>
-                                </tr>
-                                <tr>
-                                    <td style="border-right: solid 1px;">
-                                        BANCO:
-                                    </td>
-                                    <td style="border-right: solid 1px; text-align: center;">
-                                        Saldo Credito/ Liquido A Pago
-                                    </td>
-                                    <td style="text-align: right;">
-                                        <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'LIQ').total)"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border-right: solid 1px;">
-                                        CUENTA:
-                                    </td>
-                                    <td style="border-right: solid 1px;"><![CDATA[&nbsp;]]></td>
-                                    <td style=""><![CDATA[&nbsp;]]></td>
-                                </tr>
-                            </table>
+                        <div class="col-2 border border-dark border-top-0 border-bottom-0">
+                            Concepto
+                        </div>
+                        <div class="col-2 border border-dark border-top-0 border-bottom-0 border-left-0">
+                            Cantidad
+                        </div>
+                        <div class="col-2 border border-dark border-top-0 border-bottom-0 border-left-0">
+                            Valor
+                        </div>
+                        <div class="col-2 border border-dark border-top-0 border-bottom-0 border-left-0">
+                            Concepto
+                        </div>
+                        <div class="col-2 border border-dark border-top-0 border-bottom-0 border-left-0">
+                            Cantidad
+                        </div>
+                        <div class="col-2 border border-dark border-top-0 border-bottom-0 border-left-0">
+                            Valor
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12" style="text-align: center;">
-                            ANTECEDENTES ADICIONALES
-                        </div>
-                    </div>
-                    <div class="row">
-                            <div class="col-4"
-                                 style="min-height:100px;border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;">
-                                <table style="width:100%;border-spacing: 0;">
-                                    <tr>
-                                        <td style="text-align: center;border-top:solid 1px;border-left:solid 1px;border-bottom: solid 1px;border-right: solid 1px;">
-                                            Institucion Previsional
-                                        </td>
-                                        <td style="text-align: left;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            <span t-field="d.contract_id.afp_id"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: left;border-right: solid 1px;border-left:solid 1px;">
-                                            Cotizacion Obligatoria
-                                        </td>
-                                        <td style="text-align: right;border-right: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'PREV').total)"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: left;border-right: solid 1px;border-left:solid 1px;">
-                                            Cotizacion Volutario
-                                        </td>
-                                        <td style="text-align: right;border-right: solid 1px;">
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: left;border-right: solid 1px;border-left:solid 1px;">
-                                            Ahorro
-                                        </td>
-                                        <td style="text-align: right;border-right: solid 1px;">
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-left:solid 1px;border-bottom: solid 1px;">
-                                            Aporte SIS Empleador
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'SIS').total)"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-left:solid 1px;border-bottom: solid 1px;">
-                                            Base Imponible
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-bottom: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'TOTIM').total)"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-left:solid 1px;">
-                                            <![CDATA[&nbsp;]]>
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;">
-                                            <![CDATA[&nbsp;]]>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-left:solid 1px;border-bottom: solid 1px;">
-                                            Base Tributable
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'TRIBU').total)"/>
-                                        </td>
-                                    </tr>
-                                </table>
+                        <t t-foreach="d.line_ids.filtered(lambda x: x.category_id.code in ('IMP','NOTIMP'))" t-as="r">
+                            <div class="col-2 border border-dark">
+                                <span t-esc="r.name"/>
                             </div>
-                            <div class="col-4"
-                                 style="min-height:100px;border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;border-right:solid 1px;">
-                                <table style="border-spacing: 0;width: 100%;">
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-left:solid 1px;"
-                                            colspan="2">Seguro de Cesantia
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-left:solid 1px;">
-                                            Ap.Empleado
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;">
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-left:solid 1px;">
-                                            Fdo.Individual
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'SECEEMP').total)"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-left:solid 1px;">
-                                            Fdo.Solidario
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-bottom: solid 1px;">
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-bottom: solid 1px;border-left:solid 1px;">
-                                            Tot. Seguro
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-bottom: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'SECEEMP').total)"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-bottom: solid 1px;border-left:solid 1px;">
-                                            <![CDATA[&nbsp;]]>
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-bottom: solid 1px;">
-                                            <![CDATA[&nbsp;]]>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-left:solid 1px;">
-                                            <![CDATA[&nbsp;]]>
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-bottom: solid 1px;">
-                                            <![CDATA[&nbsp;]]>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;border-right: solid 1px;border-top:solid 1px;border-left:solid 1px;border-bottom: solid 1px;">
-                                            Base Imponible Seguro Cesantia
-                                        </td>
-                                        <td style="text-align: center;border-right: solid 1px;border-bottom: solid 1px;">
-                                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'TRIBU').total)"/>
-                                        </td>
-                                    </tr>
-                                </table>
+                            <div class="col-2 border border-dark">
+                                <t t-if="r.code == 'SUELDO'">
+                                    <span t-esc="d.worked_days_line_ids.filtered(lambda x: x.code == 'WORK100').number_of_days"/> dias
+                                </t>
                             </div>
-                            <div class="col-4"
-                                 style="min-height:100px;border-top:solid 1px;border-bottom:solid 1px;border-left:solid 1px;">
-                                <table>
-                                    <tr>
-                                        <td>Institucion de Salud</td>
-                                        <td>
-                                            <span t-field="d.contract_id.isapre_id.name"/>
-                                        </td>
-                                    </tr>
-                                </table>
+                            <div class="col-2 border border-dark">
+                                <span t-esc="d.round_clp(r.total)"/>
                             </div>
+                        </t>
+
+                    </div>
+                    <div class="row border border-dark">
+                        <div class="col-4 border border-dark border border-dark border-top-0 border-left-0 border-bottom-0">
+                            F.Pago : Efectivo
+                            <br/>
+                            Banco :
+                            <br/>
+                            Cuenta
                         </div>
+                        <div class="col-4 text-center align-self-center">
+                            Saldo Credito / Liquido a Pago
+                        </div>
+                        <div class="col-4 text-right align-self-center">
+                            600.000
+                        </div>
+                    </div>
                 </t>
             </div>
         </t>
