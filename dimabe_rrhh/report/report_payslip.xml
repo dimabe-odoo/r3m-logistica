@@ -463,7 +463,7 @@
                             <br/>
                             <span t-esc="res_company.l10n_cl_activity_description"/>
                         </div>
-                        <div class="col-4 align-self-end">
+                        <div class="col-4">
                             LIQUIDACION DE SUELDOS
                         </div>
                         <div class="col-4">
@@ -519,7 +519,7 @@
                         <div class="col-4 text-right">
                             Renta Base
                             <br/>
-                            <span t-esc="d.round_clp(d.contract_id.wage)" />
+                            <span t-esc="d.round_clp(d.contract_id.wage)"/>
                         </div>
                     </div>
                     <div class="row">
@@ -550,22 +550,22 @@
                             Valor
                         </div>
                     </div>
-                    <div class="row">
-                        <t t-foreach="d.line_ids.filtered(lambda x: x.category_id.code in ('IMP','NOTIMP'))" t-as="r">
+                    <t t-foreach="d.line_ids.filtered(lambda x: x.category_id.code in ('IMP','NOTIMP'))" t-as="r">
+                        <div class="row">
                             <div class="col-2 border border-dark">
                                 <span t-esc="r.name"/>
                             </div>
                             <div class="col-2 border border-dark">
                                 <t t-if="r.code == 'SUELDO'">
-                                    <span t-esc="d.worked_days_line_ids.filtered(lambda x: x.code == 'WORK100').number_of_days"/> dias
+                                    <span t-esc="d.worked_days_line_ids.filtered(lambda x: x.code == 'WORK100').number_of_days"/>
+                                    dias
                                 </t>
                             </div>
                             <div class="col-2 border border-dark">
                                 <span t-esc="d.round_clp(r.total)"/>
                             </div>
-                        </t>
-
-                    </div>
+                        </div>
+                    </t>
                     <div class="row border border-dark">
                         <div class="col-4 border border-dark border border-dark border-top-0 border-left-0 border-bottom-0">
                             F.Pago : Efectivo
@@ -578,7 +578,97 @@
                             Saldo Credito / Liquido a Pago
                         </div>
                         <div class="col-4 text-right align-self-center">
-                            600.000
+                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'LIQ').total)"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            ANTECEDENTES ADICIONALES
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="row border border-dark">
+                                <div class="col">
+                                    Institucion Previsional
+                                </div>
+                                <div class="col">
+                                    <span t-field="d.contract_id.afp_id"/>
+                                </div>
+                            </div>
+                            <div class="row border border-dark">
+                                <div class="col" style="font-size:14px;">
+                                    Cotizacion Obligatoria
+                                </div>
+                                <div class="col text-right">
+                                    <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'PREV').total)"/>
+                                </div>
+                            </div>
+                            <div class="row border border-dark">
+                                <div class="col" style="font-size:14px;">
+                                    Cotizacion Voluntaria
+                                </div>
+                                <div class="col text-right">
+
+                                </div>
+                            </div>
+                            <div class="row border border-dark">
+                                <div class="col" style="font-size:14px;">
+                                    Ahorro
+                                </div>
+                                <div class="col text-right">
+
+                                </div>
+                            </div>
+                            <div class="row border border-dark">
+                                <div class="col text-justify" style="font-size:14px;">
+                                    Total Cotizacion Previsional
+                                </div>
+                                <div class="col text-right">
+                                    <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'PREV').total)"/>
+                                </div>
+                            </div>
+                            <div class="row border border-dark">
+                                <div class="col text-justify" style="font-size:14px;">
+                                    Aporte SIS Empleador
+                                </div>
+                                <div class="col text-right">
+                                    <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'SIS').total)"/>
+                                </div>
+                            </div>
+                            <div class="row border border-dark">
+                                <div class="col text-justify" style="font-size:14px;">
+                                    Base Imponible
+                                </div>
+                                <div class="col text-right">
+                                    <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'TOTIM').total)"/>
+                                </div>
+                            </div>
+                            <div class="row border border-dark">
+                                <div class="col text-justify" style="font-size:14px;">
+                                    <![CDATA[&nbsp;]]>
+                                </div>
+                                <div class="col text-right">
+                                    <![CDATA[&nbsp;]]>
+                                </div>
+                            </div>
+                            <div class="row border border-dark">
+                                <div class="col text-justify" style="font-size:14px;">
+                                    Base Tributable
+                                </div>
+                                <div class="col text-right">
+                                    <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'TRIBU').total)"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+
+                        </div>
+                        <div class="col-3">
+
+                        </div>
+                        <div class="col-3">
+
                         </div>
                     </div>
                 </t>
