@@ -506,7 +506,7 @@
                             <br/>
                             <span t-field="d.contract_id.job_id"/>
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             Ubicacion
                             <br/>
                             <span t-field="d.employee_id.work_location"/>
@@ -515,7 +515,7 @@
                             Area
                             <br/>
                         </div>
-                        <div class="col-1 text-right">
+                        <div class="col-2 text-right">
                             Renta Base
                             <br/>
                             <span t-esc="d.round_clp(d.contract_id.wage)"/>
