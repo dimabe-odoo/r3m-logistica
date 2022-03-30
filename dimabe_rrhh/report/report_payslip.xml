@@ -651,10 +651,6 @@
                                     <td class="border border-dark border-top-0 border-bottom-0">888.543</td>
                                 </tr>
                                 <tr>
-                                    <td class="border border-dark border-top-0 border-bottom-0"><![CDATA[&nbsp;]]></td>
-                                    <td class="border border-dark border-top-0 border-bottom-0"><![CDATA[&nbsp;]]></td>
-                                </tr>
-                                <tr>
                                     <td class="border border-dark border-top-0">Base Tributable</td>
                                     <td class="border border-dark border-top-0">662.463</td>
                                 </tr>
@@ -682,14 +678,6 @@
                                         Tot.Seguro
                                     </td>
                                     <td class="border border-dark border-top-0">0</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-dark border-top-0 border-bottom-0"><![CDATA[&nbsp;]]></td>
-                                    <td class="border border-dark border-top-0 border-bottom-0"><![CDATA[&nbsp;]]></td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-dark border-top-0 border-bottom-0"><![CDATA[&nbsp;]]></td>
-                                    <td class="border border-dark border-top-0 border-bottom-0"><![CDATA[&nbsp;]]></td>
                                 </tr>
                                 <tr>
                                     <td class="border border-dark border-top-0">Base Imp.Seguro Cesantia</td>
@@ -720,10 +708,6 @@
                                         Cot.GES
                                     </td>
                                     <td class="border border-dark border-top-0 border-bottom-0">0</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-dark border-top-0"><![CDATA[&nbsp;]]></td>
-                                    <td class="border border-dark border-top-0"><![CDATA[&nbsp;]]></td>
                                 </tr>
                                 <tr>
                                     <td class="border border-dark border-top-0">Tot.Cot.Salud</td>
