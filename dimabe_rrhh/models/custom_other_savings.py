@@ -3,6 +3,7 @@ from odoo import api, fields, models
 
 class CustomOtherSavings(models.Model):
     _name = 'custom.other_savings'
+    _description = "Otros Seguros"
 
     salary_rule_id = fields.Many2one('hr.salary.rule', string="Regla Salarial",
                                      domain=[('is_other_savings', '=', True)])

@@ -1,130 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="hr_contract_form_inherit" model="ir.ui.view">
-    <field name="name">hr_contract_form_inherit</field>
-    <field name="model">hr.contract</field>
-    <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
-    <field name="priority" eval="8"/>
-    <field name="arch" type="xml">
-      <xpath expr="//field[@name='department_id']" position="before">
-        <field name="type_id" required="1"/>
-        <field name="is_commision_contract"/>
-        <field name="type_code" invisible="1"/>
-      </xpath>
-      <xpath expr="//field[@name='structure_type_id']" position="after">
-        <field name="young_worker_allowance"/>
-        <field name="is_solidary_discount" />
-        <field name="solidary_discount_percent" attrs="{'invisible':[('is_solidary_discount','=',False)], 'required': [('is_solidary_discount','=',True)]}" />
-      </xpath>
-      <xpath expr="//page[@name='information']" position="inside">
-        <group>
-          <field name="collation_amount"/>
-          <field name="mobilization_amount"/>
-          <field name="viatic_amount"/>
-          <field name="legal_gratification"/>
-        </group>
-      </xpath>
-      <xpath expr="//page[@name='information']" position="after">
-        <page string="Descuentos Fijos/Permanentes" name="permanent_discounts">
-          <field name="permanent_discounts_ids" mode="tree">
-            <form>
-              <group>
-                <field name="salary_rule_id"/>
-                <field name="amount"/>
-              </group>
-            </form>
-            <tree>
-              <field name="salary_rule_id"/>
-              <field name="amount"/>
-            </tree>
-          </field>
-        </page>
-        <page string="Ahorros" name="savings">
-          <group string="CCAF" style="width:50%;">
-            <field name="have_saving_ccaf"/>
-            <field name="saving_ccaf" attrs="{'invisible':[('have_saving_ccaf','=',False)]}"/>
-            <field name="have_life_insurance_ccaf"/>
-            <field name="life_insurance_ccaf_currency" attrs="{'invisible':[('have_life_insurance_ccaf','=',False)]}"/>
-            <field name="life_insurance_ccaf" attrs="{'invisible':[('have_life_insurance_ccaf','=',False)]}"/>
-          </group>
-          <group string="APV" style="width:50%">
-            <field name="apv_type_id" invisible="1"/>
-            <field name="apv_id"/>
-            <field name="apv_currency"/>
-            <field name="apv_amount"/>
-            <field name="apv_payment_term"/>
-          </group>
-          <group>
-            <field name="other_saving_ids" mode="tree">
-              <form>
-              <group>
-                <field name="salary_rule_id"/>
-                <field name="currency"/>
-                <field name="amount"/>
-              </group>
-            </form>
-            <tree>
-              <field name="salary_rule_id"/>
-              <field name="currency"/>
-              <field name="amount"/>
-            </tree>
-            </field>
-          </group>
-        </page>
-      </xpath>
-      <xpath expr="//page[@name='permanent_discounts']" position="after">
-        <page string="Documentos Asociados" name="dimabe_contract_document_page">
-            <group name="contract_document_page" position="inside">
-                <field name="custom_document_ids">
-                    <tree editable="bottom" create="true" delete="true">
-                        <field name="name" />
-                        <field name="document_init_date" />
-                        <field name="document_end_date" />
-                        <field name="document_type_id" />
-                        <field name="document_data" widget="binary" />
-                    </tree>
-                </field>
-            </group>
-        </page>
-      </xpath>
-      <xpath expr="//page[@name='permanent_discounts']" position="after">
-        <page string="Carga Familiar">
-          <group string="Cargas" style="width:50%;">
-            <field name="section_id" options="{'no_quick_create':True,'no_create':True}"/>
-            <field name="section_amount"/>
-            <field name="simple_charge"/>
-            <field name="maternal_charge"/>
-            <field name="disability_charge"/>
-          </group>
-        </page>
-        <page string="Datos Previsionales" name="afp_page">
-          <group string="AFP" style="width:50%;">
-            <field name="not_afp"/>
-            <field name="not_afp_sis"/>
-            <field name="first_progressive_vacation_date"/>
-            <field name="afp_id" attrs="{'required': [('not_afp', '=', False)], 'invisible':[('not_afp','=',True)]}"/>
-            <field name="is_pensionary"/>
-            <field name="type_pensionary" attrs="{'invisible':['|',('is_pensionary','=',False),('not_afp','=',True)]}"/>
-          </group>
-          <group string="Salud" style="width:50%;">
-            <field name="is_fonasa"/>
-            <field name="isapre_id" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
-            <field name="currency_isapre_id" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
-            <field name="isapre_agreed_quotes_uf" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
-            <field name="fun_number" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
-            <field name="own_account_isapre" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
-          </group>
-          <group string="AFC" style="width: 50%">
-            <field name="continue_paid_afc" attrs="{'invisible':[('type_code','!=','3')]}"/>
-          </group>
-          <group string="Seguro Complementario" style="width:50%;">
-            <field name="supplementary_insurance_type_id" invisible="1"/>
-            <field name="supplementary_insurance_id"/>
-            <field name="currency_supplementary_insurance_id"/>
-            <field name="supplementary_insurance_agreed_quotes_uf"/>
-          </group>
-        </page>
-      </xpath>
-    </field>
-  </record>
+    <record id="hr_contract_form_inherit" model="ir.ui.view">
+        <field name="name">hr_contract_form_inherit</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='department_id']" position="before">
+                <field name="type_id" required="1"/>
+                <field name="is_commision_contract"/>
+                <field name="is_contract_work"/>
+                <field name="type_code" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='structure_type_id']" position="after">
+                <field name="young_worker_allowance"/>
+                <field name="is_solidary_discount"/>
+                <field name="solidary_discount_percent"
+                       attrs="{'invisible':[('is_solidary_discount','=',False)], 'required': [('is_solidary_discount','=',True)]}"/>
+            </xpath>
+            <xpath expr="//page[@name='information']" position="inside">
+                <group>
+                    <field name="collation_amount"/>
+                    <field name="mobilization_amount"/>
+                    <field name="viatic_amount"/>
+                    <field name="legal_gratification"/>
+                </group>
+            </xpath>
+            <xpath expr="//page[@name='information']" position="after">
+                <page string="Descuentos Fijos/Permanentes" name="permanent_discounts">
+                    <field name="permanent_discounts_ids" mode="tree">
+                        <form>
+                            <group>
+                                <field name="salary_rule_id"/>
+                                <field name="amount"/>
+                            </group>
+                        </form>
+                        <tree>
+                            <field name="salary_rule_id"/>
+                            <field name="amount"/>
+                        </tree>
+                    </field>
+                </page>
+                <page string="Ahorros" name="savings">
+                    <group string="CCAF" style="width:50%;">
+                        <field name="have_saving_ccaf"/>
+                        <field name="saving_ccaf" attrs="{'invisible':[('have_saving_ccaf','=',False)]}"/>
+                        <field name="have_life_insurance_ccaf"/>
+                        <field name="life_insurance_ccaf_currency" string="Tipo de Moneda"
+                               attrs="{'invisible':[('have_life_insurance_ccaf','=',False)]}"/>
+                        <field name="life_insurance_ccaf"
+                               attrs="{'invisible':[('have_life_insurance_ccaf','=',False)]}"/>
+                    </group>
+                    <group string="APV" style="width:50%">
+                        <field name="apv_type_id" invisible="1"/>
+                        <field name="apv_id"/>
+                        <field name="apv_currency" string="Moneda"/>
+                        <field name="apv_amount"/>
+                        <field name="apv_payment_term"/>
+                    </group>
+                    <group>
+                        <field name="other_saving_ids" mode="tree">
+                            <form>
+                                <group>
+                                    <field name="salary_rule_id"/>
+                                    <field name="currency"/>
+                                    <field name="amount"/>
+                                </group>
+                            </form>
+                            <tree>
+                                <field name="salary_rule_id"/>
+                                <field name="currency"/>
+                                <field name="amount"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='permanent_discounts']" position="after">
+                <page string="Documentos Asociados" name="dimabe_contract_document_page">
+                    <group name="contract_document_page" position="inside">
+                        <field name="custom_document_ids">
+                            <tree editable="bottom" create="true" delete="true">
+                                <field name="name"/>
+                                <field name="document_init_date"/>
+                                <field name="document_end_date"/>
+                                <field name="document_type_id"/>
+                                <field name="document_data" widget="binary"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='permanent_discounts']" position="after">
+                <page string="Carga Familiar">
+                    <group string="Cargas" style="width:50%;">
+                        <field name="section_id" options="{'no_quick_create':True,'no_create':True}"/>
+                        <field name="section_amount"/>
+                        <field name="simple_charge"/>
+                        <field name="maternal_charge"/>
+                        <field name="disability_charge"/>
+                    </group>
+                </page>
+                <page string="Datos Previsionales" name="afp_page">
+                    <group string="AFP" style="width:50%;">
+                        <field name="not_afp"/>
+                        <field name="not_afp_sis"/>
+                        <field name="first_progressive_vacation_date"/>
+                        <field name="afp_id"
+                               attrs="{'required': [('not_afp', '=', False)], 'invisible':[('not_afp','=',True)]}"/>
+                        <field name="is_pensionary"/>
+                        <field name="type_pensionary"
+                               attrs="{'invisible':['|',('is_pensionary','=',False),('not_afp','=',True)]}"/>
+                    </group>
+                    <group string="Salud" style="width:50%;">
+                        <field name="is_fonasa"/>
+                        <field name="isapre_id" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
+                        <field name="currency_isapre_id" string="Moneda" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
+                        <field name="isapre_agreed_quotes_uf" string="Cotizacion Pactada" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
+                        <field name="fun_number" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
+                        <field name="own_account_isapre" attrs="{'invisible':[('is_fonasa','=',True)]}"/>
+                    </group>
+                    <group string="AFC" style="width: 50%">
+                        <field name="continue_paid_afc" attrs="{'invisible':[('type_code','!=','3')]}"/>
+                    </group>
+                    <group string="Seguro Complementario" style="width:50%;">
+                        <field name="supplementary_insurance_type_id" invisible="1"/>
+                        <field name="supplementary_insurance_id"/>
+                        <field name="currency_supplementary_insurance_id" string="Moneda"/>
+                        <field name="supplementary_insurance_agreed_quotes_uf" string="Cotizacion Pactada"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
 </odoo>

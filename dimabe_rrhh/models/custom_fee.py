@@ -3,6 +3,7 @@ from odoo import fields, models, api
 
 class CustomFee(models.Model):
     _name = 'custom.fee'
+    _description = 'Cuota Prestamo'
 
     number = fields.Integer('Numero')
 

@@ -16,7 +16,6 @@ class HrEmployee(models.Model):
 
     marital = fields.Selection(selection_add=[('civilunion', 'Unión Civil')])
 
-
     @api.model
     def _get_computed_name(self, last_name, first_name, last_name2=None, middle_name=None):
         names = []
@@ -35,7 +34,6 @@ class HrEmployee(models.Model):
         if self.first_name and self.last_name:
             self.name = self._get_computed_name(self.last_name, self.first_name, self.mothers_name, self.middle_name)
 
-
     def generate_vacation_by_employee(self):
         vacation_id = self.env['custom.vacation'].search([('employee_id', '=', self.id)])
 
@@ -50,3 +48,6 @@ class HrEmployee(models.Model):
             })
 
             vacation_id.update_vacation_lines()
+
+    def get_reverse_full_name(self):
+        return f'{self.last_name} {self.mothers_name} {self.first_name} {self.middle_name}'

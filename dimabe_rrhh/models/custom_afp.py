@@ -3,6 +3,7 @@ from odoo import models, fields
 
 class CustomAfp(models.Model):
     _name = 'custom.afp'
+    _description = 'AFP'
 
     code = fields.Char('Codigo', required=True)
 

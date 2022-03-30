@@ -1,8 +1,8 @@
 from odoo import models, fields
 
 class CustomContractDocument(models.Model):
-
     _name = 'custom.contract.document'
+    _description = 'Documentos del Contrato'
 
     name = fields.Char('Número Documento')
 

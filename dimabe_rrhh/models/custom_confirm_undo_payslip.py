@@ -2,6 +2,7 @@ from odoo import fields, models, api
 
 class CustomConfirmPayslip(models.TransientModel):
     _name = 'custom.confirm_payslip'
+    _description = "Confirmar Nomina por Indicador"
 
     indicator_id = fields.Many2one('custom.indicators', string="Indicador")
 
@@ -35,8 +36,9 @@ class CustomConfirmPayslip(models.TransientModel):
                         })
 
 
-class CustomConfirmPayslip(models.TransientModel):
+class CustomUndoPayslip(models.TransientModel):
     _name = 'custom.undo_payslip'
+    _description = "Cambiar a Borrador Nominas por Indicador"
 
     indicator_id = fields.Many2one('custom.indicators', string="Indicador")
 

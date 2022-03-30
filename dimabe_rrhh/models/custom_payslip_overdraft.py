@@ -2,6 +2,7 @@ from odoo import fields, api, models
 
 class CustomPaylsipOverdraft(models.Model):
     _name = 'custom.payslip_overdraft'
+    _description = 'Sobregiro de Nomina'
 
     employee_id = fields.Many2one('hr.employee', 'Empleado', required=True)
 

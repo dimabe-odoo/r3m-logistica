@@ -10,8 +10,10 @@ import math
 import pytz
 from dateutil.relativedelta import relativedelta
 
+
 class CustomHolidays(models.Model):
     _name = 'custom.holidays'
+    _description = "Ausencia Legales"
 
     name = fields.Char('Nombre')
 
@@ -27,7 +29,7 @@ class CustomHolidays(models.Model):
         for item in self:
             item.year = item.date.year
 
-    def set_holidays_by_year(self, year = None):
+    def set_holidays_by_year(self, year=None):
         if year == None:
             datetime.now().year
         url = 'https://apis.digital.gob.cl/fl/feriados/{}'.format(str(year))
@@ -89,9 +91,9 @@ class CustomHolidays(models.Model):
 
             if len(error_message) > 0:
                 return {
-                'warning': {
-                    'title': 'Advertencia!',
-                    'message': error_message}
+                    'warning': {
+                        'title': 'Advertencia!',
+                        'message': error_message}
                 }
 
     def generate_holidays(self, year):
@@ -99,7 +101,8 @@ class CustomHolidays(models.Model):
         resource_calendar_ids = self.env['hr.employee'].search([]).mapped('resource_calendar_id')
         for resource_calendar_id in resource_calendar_ids:
             for holiday_id in custom_holiday_ids:
-                global_leave_id = resource_calendar_id.mapped('global_leave_ids').filtered(lambda x: x.date_from.year == year and x.date_from.month == holiday_id.date.month and x.date_from.day == holiday_id.date.day)
+                global_leave_id = resource_calendar_id.mapped('global_leave_ids').filtered(lambda
+                                                                                               x: x.date_from.year == year and x.date_from.month == holiday_id.date.month and x.date_from.day == holiday_id.date.day)
                 if not global_leave_id:
                     from_hour = resource_calendar_id.attendance_ids[0].hour_from
                     to_hour = resource_calendar_id.attendance_ids[-1].hour_to
@@ -141,9 +144,10 @@ class CustomHolidays(models.Model):
             return True
         return False
 
-    #evaluar
+    # evaluar
     def custom_compute_date_from_to(self, holiday):
-        if holiday['request_date_from'] and holiday['request_date_to'] and holiday['request_date_from'] > holiday['request_date_to']:
+        if holiday['request_date_from'] and holiday['request_date_to'] and holiday['request_date_from'] > holiday[
+            'request_date_to']:
             holiday['request_date_to'] = holiday['request_date_from']
         if not holiday.request_date_from:
             holiday.date_from = False

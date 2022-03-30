@@ -19,13 +19,13 @@ class CustomLoan(models.Model):
 
     employee_id = fields.Many2one('hr.employee', string='Empleado')
 
-    fee_qty = fields.Integer('Cantidad de Cuota', track_visibility='onchange')
+    fee_qty = fields.Integer('Cantidad de Cuota', tracking=True)
 
-    fee_value = fields.Monetary('Valor de Cuota', track_visibility='onchange')
+    fee_value = fields.Monetary('Valor de Cuota', tracking=True)
 
-    fee_remaining = fields.Integer('Cuota Restantes', track_visibility='onchange', compute="compute_fee_remaining")
+    fee_remaining = fields.Integer('Cuota Restantes', tracking=True, compute="compute_fee_remaining")
 
-    loan_total = fields.Monetary('Total a prestar', track_visibility='onchange')
+    loan_total = fields.Monetary('Total a prestar', tracking=True)
 
     currency_id = fields.Many2one('res.currency', string='Moneda',
                                   default=lambda self: self.env['res.currency'].search([('name', '=', 'CLP')]))
@@ -38,17 +38,17 @@ class CustomLoan(models.Model):
 
     fee_ids = fields.One2many('custom.fee', 'loan_id')
 
-    next_fee_id = fields.Many2one('custom.fee', compute='compute_next_fee')
+    next_fee_id = fields.Many2one('custom.fee',string="Proxima Cuota", compute='compute_next_fee')
 
-    next_fee_date = fields.Date('Proxima Cuota', related='next_fee_id.expiration_date')
+    next_fee_date = fields.Date('Fecha Proxima Cuota', related='next_fee_id.expiration_date')
 
     rule_id = fields.Many2one('hr.salary.rule', string='Regla', domain=[('discount_in_fee', '=', True)],required=True)
 
     indicator_id = fields.Many2one('custom.indicators', string="Indicador que se inciara")
 
     state = fields.Selection([('draft', 'Borrador'), ('in_process', 'En Proceso'), ('done', 'Finalizado')],
-                             default='draft', track_visibility='onchange')
-    next_fee_ids = fields.Many2many('custom.fee', compute='compute_next_fee')
+                             default='draft', tracking=True)
+    next_fee_ids = fields.Many2many('custom.fee',string="Cuotas", compute='compute_next_fee')
 
     def compute_fee_remaining(self):
         for item in self:

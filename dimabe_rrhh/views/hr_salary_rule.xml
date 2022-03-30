@@ -20,6 +20,7 @@
                     <field name="category_code" invisible="1"/>
                     <field name="is_permanent_discount" attrs="{'invisible':[('category_code', '!=', 'ODES')]}"/>
                     <field name="is_other_savings" attrs="{'invisible':[('category_code', '!=', 'ODES')]}"/>
+                    <field name="available_to_other_line_ids"/>
                 </xpath>
             </field>
         </record>

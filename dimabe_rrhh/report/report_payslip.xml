@@ -177,7 +177,8 @@
                             </tr>
                             <tr>
                                 <td style="border-right: 1px solid #0080bf;padding-left: 6px;">
-                                    <span t-field="d.line_ids.filtered(lambda a: a.code == 'SUELDO').name" style="text-transform:capitalize;"/>
+                                    <span t-field="d.line_ids.filtered(lambda a: a.code == 'SUELDO').name"
+                                          style="text-transform:capitalize;"/>
                                 </td>
                                 <td style="border-right: 1px solid #0080bf;text-align: right;padding-right: 6px;">
                                     <span t-field="d.line_ids.filtered(lambda a: a.code == 'SUELDO').total"/>
@@ -186,7 +187,8 @@
                             <t t-if="d.contract_id.type_id.code != '4' and d.line_ids.filtered(lambda a: a.code == 'GRAT')">
                                 <tr>
                                     <td style="border-right: 1px solid #0080bf;padding-left: 6px;">
-                                        <span t-field="d.line_ids.filtered(lambda a: a.code == 'GRAT').name" style="text-transform:capitalize;"/>
+                                        <span t-field="d.line_ids.filtered(lambda a: a.code == 'GRAT').name"
+                                              style="text-transform:capitalize;"/>
                                     </td>
                                     <td style="border-right: 1px solid #0080bf;text-align: right;padding-right: 6px;">
                                         <span t-field="d.line_ids.filtered(lambda a: a.code == 'GRAT').total"/>
@@ -196,7 +198,8 @@
                             <t t-if="d.line_ids.filtered(lambda a: a.code == 'MANGRAT')">
                                 <tr>
                                     <td style="border-right: 1px solid #0080bf;padding-left: 6px;">
-                                        <span t-field="d.line_ids.filtered(lambda a: a.code == 'MANGRAT').name" style="text-transform:capitalize;"/>
+                                        <span t-field="d.line_ids.filtered(lambda a: a.code == 'MANGRAT').name"
+                                              style="text-transform:capitalize;"/>
                                     </td>
                                     <td style="border-right: 1px solid #0080bf;text-align: right;padding-right: 6px;">
                                         <span t-field="d.line_ids.filtered(lambda a: a.code == 'MANGRAT').total"/>
@@ -210,7 +213,8 @@
                                         <td style="padding-left: 6px;border-right: 1px solid #0080bf;">
                                             <span t-field="l.name" style="text-transform:capitalize;"/>
                                             <t t-if="l.code in ['HEX50','HEX100','HEX150']">
-                                                :<span t-esc="d.get_extra_hour_quantity(l.code)"/>
+                                                :
+                                                <span t-esc="d.get_extra_hour_quantity(l.code)"/>
                                             </t>
                                         </td>
                                         <td style="padding-right: 6px;border-right: 1px solid #0080bf;text-align: right;">
@@ -253,23 +257,26 @@
                                         <td style="padding-left: 6px;border-right: 1px solid #0080bf;">
                                             <t t-if="l.code=='PREV' and l.total > 0">
                                                 <span t-field="l.name" style="text-transform:capitalize;"/>
-                                                <span t-field="d.contract_id.afp_id.name" style="text-transform:capitalize;"/>
+                                                <span t-field="d.contract_id.afp_id.name"
+                                                      style="text-transform:capitalize;"/>
                                                 <t t-if="d.contract_id.type_id.code == '4'">
                                                     <span
-                                                        t-esc="d.indicator_id.data_ids.filtered(lambda a: a.name.upper() == 'TASA SIS INDEPENDIENTE {}'.format(d.contract_id.afp_id.name.upper()) ).percentage_show"/>
+                                                            t-esc="d.indicator_id.data_ids.filtered(lambda a: a.name.upper() == 'TASA SIS INDEPENDIENTE {}'.format(d.contract_id.afp_id.name.upper()) ).percentage_show"/>
                                                 </t>
                                                 <t t-else="">
                                                     <span
-                                                        t-esc="d.indicator_id.data_ids.filtered(lambda a: a.name.upper() == 'TASA AFP {}'.format(d.contract_id.afp_id.name.upper()) ).percentage_show"/>
+                                                            t-esc="d.indicator_id.data_ids.filtered(lambda a: a.name.upper() == 'TASA AFP {}'.format(d.contract_id.afp_id.name.upper()) ).percentage_show"/>
                                                 </t>
 
                                             </t>
                                             <t t-elif="l.code == 'SALUD'">
                                                 <span t-if="d.contract_id.is_fonasa">Fonasa 7%</span>
                                                 <t t-elif="not d.contract_id.is_fonasa">
-                                                    <span t-field="d.contract_id.isapre_id.name" style="text-transform:capitalize;"/>
+                                                    <span t-field="d.contract_id.isapre_id.name"
+                                                          style="text-transform:capitalize;"/>
                                                     <span t-field="d.contract_id.isapre_agreed_quotes_uf"/>
-                                                    <span t-field="d.contract_id.currency_isapre_id.name" style="text-transform:capitalize;"/>
+                                                    <span t-field="d.contract_id.currency_isapre_id.name"
+                                                          style="text-transform:capitalize;"/>
                                                 </t>
                                             </t>
                                             <t t-elif="l.code == 'ADISA'">
@@ -290,7 +297,8 @@
                                             </t>
                                             <t t-elif="l.code=='APV'">
                                                 <span t-field="l.name" style="text-transform:capitalize;"/>
-                                                <span t-field="d.contract_id.apv_id.name" style="text-transform:capitalize;"/>
+                                                <span t-field="d.contract_id.apv_id.name"
+                                                      style="text-transform:capitalize;"/>
                                                 <t t-if="d.contract_id.apv_currency == 'uf'">
                                                     UF
                                                 </t>
@@ -318,33 +326,36 @@
                                     <td style="border-right: 1px solid #0080bf"></td>
                                 </tr>
                                 <t t-foreach="d.input_line_ids" t-as="l">
-                                    <t t-set="rule" t-value="request.env['hr.salary.rule'].search([('code','=',l.code),('category_id.code','=','ODES')])"/>
+                                    <t t-set="rule"
+                                       t-value="request.env['hr.salary.rule'].search([('code','=',l.code),('category_id.code','=','ODES')])"/>
                                     <t t-if="rule.category_id.code == 'ODES' and l.amount > 0 and l.code != 'DSVCCAF' and l.code != 'RETSOL'">
-                                          <tr>
-                                              <td style="padding-left: 6px;border-right: 1px solid #0080bf;">
-                                                  <span t-field="l.name" style="text-transform:capitalize;"/>
-                                                  <t t-if="l.additional_info">
-                                                    -<span t-field="l.additional_info" style="text-transform:capitalize;"/>
-                                                  </t>
-                                              </td>
-                                              <td style="border-right: 1px solid #0080bf;"></td>
-                                              <td style="padding-right: 6px; text-align: right;">
-                                                  <span t-esc="l.amount" t-options='{"widget": "float", "precision": 0}'/>
-                                              </td>
-                                          </tr>
+                                        <tr>
+                                            <td style="padding-left: 6px;border-right: 1px solid #0080bf;">
+                                                <span t-field="l.name" style="text-transform:capitalize;"/>
+                                                <t t-if="l.additional_info">
+                                                    -
+                                                    <span t-field="l.additional_info"
+                                                          style="text-transform:capitalize;"/>
+                                                </t>
+                                            </td>
+                                            <td style="border-right: 1px solid #0080bf;"></td>
+                                            <td style="padding-right: 6px; text-align: right;">
+                                                <span t-esc="l.amount" t-options='{"widget": "float", "precision": 0}'/>
+                                            </td>
+                                        </tr>
                                     </t>
                                 </t>
                                 <t t-foreach="d.line_ids" t-as="l">
                                     <t t-if="l.code in ['DSVCCAF', 'RETSOL']">
                                         <tr>
-                                              <td style="padding-left: 6px;border-right: 1px solid #0080bf;">
-                                                  <span t-field="l.name" style="text-transform:capitalize;"/>
-                                              </td>
-                                              <td style="border-right: 1px solid #0080bf;"></td>
-                                              <td style="padding-right: 6px; text-align: right;">
-                                                  <span t-esc="int(l.total)"/>
-                                              </td>
-                                          </tr>
+                                            <td style="padding-left: 6px;border-right: 1px solid #0080bf;">
+                                                <span t-field="l.name" style="text-transform:capitalize;"/>
+                                            </td>
+                                            <td style="border-right: 1px solid #0080bf;"></td>
+                                            <td style="padding-right: 6px; text-align: right;">
+                                                <span t-esc="int(l.total)"/>
+                                            </td>
+                                        </tr>
                                     </t>
                                 </t>
                             </t>
@@ -439,6 +450,308 @@
             </div>
         </t>
     </template>
+    <template id="report_payslip_r3m_bootstrap">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="d">
+                    <div class="oe_structure"/>
+                    <div class="row border border-dark">
+                        <div class="col-4">
+                            <span t-esc="res_company.name"/>
+                            <br/>
+                            <span t-esc="res_company.vat"/>
+                            <br/>
+                            <span t-esc="res_company.l10n_cl_activity_description"/>
+                        </div>
+                        <div class="col-4">
+                            LIQUIDACION DE SUELDOS
+                        </div>
+                        <div class="col-4">
+                            <span t-esc="d.indicator_id.get_indicator_name()"/>
+                            <br/>
+                            <br/>
+                            F.Inicio :
+                            <span t-field="d.contract_id.date_start"/>
+                        </div>
+                    </div>
+                    <div class="row border border-dark border-top-0">
+                        <div class="col-4 border border-dark border-top-0 border-bottom-0 border-left-0">
+                            Ficha :
+                            <span t-field="d.contract_id.id"/>
+                        </div>
+                        <div class="col-4">
+                            <span t-esc="d.employee_id.get_reverse_full_name()"/>
+                        </div>
+                        <div class="col-4 border border-dark border-top-0 border-bottom-0 border-right-0">
+                            RUT :
+                            <span t-field="d.employee_id.identification_id"/>
+                        </div>
+                    </div>
+                    <div class="row border border-dark border-top-0">
+                        <div class="col-3">
+                            C.Costo
+                            <br/>
+                            <t t-if="res_company.analitic_account == '1' and d.account_analytic_id.name">
+                                <span t-esc="d.account_analytic_id.name.capitalize()"/>
+                            </t>
+                            <t t-if="res_company.analitic_account == '2' and d.contract_id.analytic_account_id.name">
+                                <span t-esc="d.contract_id.analytic_account_id.name.capitalize()"/>
+                            </t>
+                            <t t-if="res_company.analitic_account == '3' and d.contract_id.department_id.analytic_account_id.name">
+                                <span t-esc="d.contract_id.department_id.analytic_account_id.name.capitalize()"/>
+                            </t>
+                        </div>
+                        <div class="col-3">
+                            Cargo
+                            <br/>
+                            <span t-field="d.contract_id.job_id"/>
+                        </div>
+                        <div class="col-2">
+                            Ubicacion
+                            <br/>
+                            <span t-field="d.employee_id.work_location"/>
+                        </div>
+                        <div class="col-2">
+                            Area
+                            <br/>
+                        </div>
+                        <div class="col-2 text-right">
+                            Renta Base
+                            <br/>
+                            <span t-esc="d.round_clp(d.contract_id.wage)"/>
+                        </div>
+                    </div>
+                    <div class="row border border-dark border-top-0">
+                        <div class="col-6">
+                            <table class="table table-borderless table-sm border border-dark border-top-0"
+                                   style="font-size: 12px;width:100%;margin:0 auto;">
+                                <tr>
+                                    <th colspan="3" style="text-align: center;"
+                                        class="border border-dark border-top-0 border-left-0 border-right-0">HABERES
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark text-left">Concepto</td>
+                                    <td class="border border-dark text-right">Cantidad</td>
+                                    <td class="border border-dark text-right">Valor</td>
+                                </tr>
+                                <t t-foreach="d.line_ids.filtered(lambda x: x.category_id.code in ('IMP','NOTIMP'))"
+                                   t-as="r">
+                                    <tr>
+                                        <td class="border border-dark text-left">
+                                            <span t-field="r.name"/>
+                                        </td>
+                                        <td class="border border-dark text-left"></td>
+                                        <td class="border border-dark text-left">
+                                            <span t-esc="d.round_clp(r.total)"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td class="border border-dark" colspan="2">
+                                        Total Haberes
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'HAB').total)"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-6">
+                            <table class="table table-borderless table-sm border border-dark border-top-0 "
+                                   style="font-size: 12px;">
+                                <tr>
+                                    <th colspan="3" style="text-align: center;" class="border border-dark border-top-0">
+                                        DESCUENTOS
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark text-left">Concepto</td>
+                                    <td class="border border-dark text-right">Cantidad</td>
+                                    <td class="border border-dark text-right">Valor</td>
+                                </tr>
+                                <t t-foreach="d.line_ids.filtered(lambda x: x.category_id.code in ('PREV','SAL','DES','ODES'))"
+                                   t-as="r">
+                                    <tr>
+                                        <td class="border border-dark text-left">
+                                            <span t-field="r.name"/>
+                                        </td>
+                                        <td class="border border-dark text-left"></td>
+                                        <td class="border border-dark text-left">
+                                            <span t-esc="d.round_clp(r.total)"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td class="border border-dark" colspan="2">
+                                        Total Descuentos
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'TDE').total)"/>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                    <div class="row border border-dark">
+                        <div class="col-4 border border-dark border border-dark border-top-0 border-left-0 border-bottom-0">
+                            F.Pago : Efectivo
+                            <br/>
+                            Banco :
+                            <br/>
+                            Cuenta
+                        </div>
+                        <div class="col-4 text-center align-self-center">
+                            Saldo Credito / Liquido a Pago
+                        </div>
+                        <div class="col-4 text-right align-self-center">
+                            <span t-esc="d.round_clp(d.line_ids.filtered(lambda x: x.code == 'LIQ').total)"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            ANTECEDENTES ADICIONALES
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <table class="table table-sm table-borderless">
+                                <tr>
+                                    <td class="border border-dark">Inst.Previsional</td>
+                                    <td class="border border-dark">PlanVital</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0 border-bottom-0">Cot. Obligatoria</td>
+                                    <td class="border border-dark border-top-0 border-bottom-0">99.161</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0 border-bottom-0">Cot. Voluntaria</td>
+                                    <td class="border border-dark border-top-0 border-bottom-0">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0">Ahorro</td>
+                                    <td class="border border-dark border-top-0">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0">
+                                        Tot.Cot.Previsional
+                                    </td>
+                                    <td class="border border-dark border-top-0">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0">Aporte SIS Empleador</td>
+                                    <td class="border border-dark border-top-0">16.433</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0 border-bottom-0">Base Imponible</td>
+                                    <td class="border border-dark border-top-0 border-bottom-0">888.543</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0">Base Tributable</td>
+                                    <td class="border border-dark border-top-0">662.463</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-4">
+                            <table class="table table-sm table-borderless">
+                                <tr>
+                                    <td class="border border-dark text-center" colspan="2">Seguro de Cesantia</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0 border-bottom-0">Ap.Empleado</td>
+                                    <td class="border border-dark border-top-0 border-bottom-0">99.161</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0 border-bottom-0">Fdo.Individual</td>
+                                    <td class="border border-dark border-top-0 border-bottom-0">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0">Fdo.Solidario</td>
+                                    <td class="border border-dark border-top-0">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0">
+                                        Tot.Seguro
+                                    </td>
+                                    <td class="border border-dark border-top-0">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0">Base Imp.Seguro Cesantia</td>
+                                    <td class="border border-dark border-top-0">662.463</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-4">
+                            <table class="table table-sm table-borderless">
+                                <tr>
+                                    <td class="border border-dark">Inst.de Salud</td>
+                                    <td class="border border-dark">Mas Vida</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0 border-bottom-0">Cot. Obligatoria</td>
+                                    <td class="border border-dark border-top-0 border-bottom-0">99.161</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0 border-bottom-0">Ley 18.566</td>
+                                    <td class="border border-dark border-top-0 border-bottom-0">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0 border-bottom-0">Cot.Voluntaria</td>
+                                    <td class="border border-dark border-top-0 border-bottom-0">57.346</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0 border-bottom-0">
+                                        Cot.GES
+                                    </td>
+                                    <td class="border border-dark border-top-0 border-bottom-0">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0">Tot.Cot.Salud</td>
+                                    <td class="border border-dark border-top-0 ">119.544</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0 border-bottom-0">Plan Pactado + GES</td>
+                                    <td class="border border-dark border-top-0 border-bottom-0">119.544</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-dark border-top-0">Pagado en Exceso</td>
+                                    <td class="border border-dark border-top-0">0</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 border border-dark">
+                            Certifico que he recibido de:
+                            <span t-field="res_company.name"/>
+                            a mi entera satisfacción la remuneración del presente mes
+                            y no tengo cobro alguno que hacer, por ninguno de los
+                            conceptos comprendidos en ella.
+                        </div>
+                        <div class="col-5 align-content-center border border-dark">
+                            <table class="table table-sm table-borderless">
+                                <tr>
+                                    <td><![CDATA[&nbsp;]]></td>
+                                </tr>
+                                <tr>
+                                    <td><![CDATA[&nbsp;]]></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center border border-dark border-bottom-0 border-left-0 border-right-0">
+                                        Acuse Recibo
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
     <record id="paper_format_letter_custom" model="report.paperformat">
         <field name="name">Carta Custom</field>
         <field name="default" eval="False"/>
@@ -454,7 +767,18 @@
         <field name="header_spacing">0</field>
         <field name="dpi">90</field>
     </record>
-    <report id="action_payslip_report" string="Nómina" model="hr.payslip" report_type="qweb-pdf"
-            name="dimabe_rrhh.report_payslip" menu="True" paperformat="paper_format_letter_custom"
-            print_report_name="((object.name).replace('Recibo de Salario','Liq.'))"/>
+    <!--    <report id="action_payslip_report" string="Nómina" model="hr.payslip" report_type="qweb-pdf"-->
+    <!--            name="dimabe_rrhh.report_payslip" menu="True" paperformat="paper_format_letter_custom"-->
+    <!--            print_report_name="((object.name).replace('Recibo de Salario','Liq.'))"/>-->
+    <record id="action_payslip_report_r3m_bootstrap" model="ir.actions.report">
+        <field name="name">Liquidacion</field>
+        <field name="model">hr.payslip</field>
+        <field name="print_report_name">((object.name).replace('Recibo de Salario','Liq.'))</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">dimabe_rrhh.report_payslip_r3m_bootstrap</field>
+        <field name="report_file">dimabe_rrhh.report_payslip_r3m_bootstrap</field>
+        <field name="binding_model_id" ref="dimabe_rrhh.model_hr_payslip"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="dimabe_rrhh.paper_format_letter_custom"/>
+    </record>
 </odoo>

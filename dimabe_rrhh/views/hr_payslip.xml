@@ -66,12 +66,6 @@
             <xpath expr="//field[@name='account_analytic_id']" position="attributes">
                  <attribute name="invisible">1</attribute>
             </xpath>
-            <xpath expr="//field[@name='input_line_ids']" position="after">
-                <group>
-                    <field name="salary_id"/>
-                    <button name="add" type="object" string="Agregar"/>
-                </group>
-            </xpath>
 
             <xpath expr="//field[@name='input_line_ids']/tree//field[@name='code']" position="before">
                 <field name="additional_info"/>

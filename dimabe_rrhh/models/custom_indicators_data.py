@@ -3,6 +3,7 @@ from odoo import models, fields
 
 class CustomIndicators(models.Model):
     _name = 'custom.indicators.data'
+    _description = "Datos de los Indicadores"
 
     name = fields.Char('Nombre')
 
